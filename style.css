@@ -1,6 +1,7 @@
 body {
-    height: 270px;
-    width: 1280px;
+    background-image: url("Styles/Images/login.png");
+        resize: both;
+        background-position: center;
 }
 
 #mainCharacter {

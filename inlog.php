@@ -34,9 +34,13 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Log in</title>
 </head>
 <body>
+    <div class="background">
+
+    
     <form method="POST">
         <div>
             <label for="username">Gebruikersnaam</label>
@@ -51,5 +55,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         <?php } ?>
         <input type="submit" value="Inloggen">
     </form>
+    </div>
 </body>
 </html>
