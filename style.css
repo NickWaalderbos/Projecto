@@ -1,0 +1,94 @@
+body {
+    height: 270px;
+    width: 1280px;
+}
+
+#mainCharacter {
+    position: fixed;
+    left: 19%;
+    width: 20%;
+    height: 25%;
+    margin-top: 6%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+#mainCharacterHP {
+    position: fixed;
+    left: 19%;
+    width: 20%;
+    height: 7%;
+    margin-top: 20%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+#mainCharacterDF {
+    position: fixed;
+    left: 37%;
+    width: 2%;
+    height: 7%;
+    margin-top: 20%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+#enemyCharacter {
+    position: fixed;
+    right: 19%;
+    width: 20%;
+    height: 25%;
+    margin-top: 6%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+#enemyCharacterHP {
+    position: fixed;
+    right: 19%;
+    width: 20%;
+    height: 7%;
+    margin-top: 20%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+#enemyCharacterDF {
+    position: fixed;
+    right: 19%;
+    width: 2%;
+    height: 7%;
+    margin-top: 20%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+.Design {
+    min-width: 900px;
+}
+
+#AttacksBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: fixed;
+    left: 19%;
+    width: 20%;
+    height: 20%;
+    margin-top: 27%;
+    padding-left: 5px;
+    border: 5px solid black;
+}
+
+.Attacks {
+
+    width: 60%;
+    border: none;
+    background-color: #000000;
+    color: white;
+    padding: 7px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
