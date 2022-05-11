@@ -39,8 +39,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </head>
 <body>
     <div class="background">
-
-    
     <form method="POST">
         <div>
             <label for="username">Gebruikersnaam</label>

@@ -55,8 +55,19 @@ body {
     position: relative;
     top: 45%;
     left: 50%;
-    width: 10%;
+    width: 50%;
     border-style: solid;
     background-color: white;
     transform: translate(-50%, -50%);
+}
+.Character {
+    width: 20%;
+    min-width: 200px;
+    height: 20%;
+    min-height: 200px;
+    margin: 1%;
+}
+
+.Characterblock span {
+    width: 100px;
 }
