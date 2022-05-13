@@ -69,14 +69,15 @@ body {
     left: 50%;
     position: relative;
     text-align: center;
-    min-width: 300px;
+    min-width: 225px;
     background-color: white;
     border-radius: 15px;
     border-color: white;
     padding: 10px;
     transform: translate(-50%);
 }
-.characterstats {
+
+.characterStats {
     z-index: -1;
     opacity: 0;
     left: 70%;
@@ -88,7 +89,9 @@ body {
     border-color: white;
     padding: 10px;
     transform: translate(-50%);
+    font-family: "Lucida Console", "Courier New", monospace;
 }
+
 .character {
     width: 10%;
     min-width: 100px;
@@ -104,42 +107,40 @@ body {
 .characterBlock img {
     width: 100%;
 }
-progress {
-    -webkit-appearance: none;
-    height:40px;
-	width:80%;
-	margin:0 auto;
-	background-color:#dadada;
-	border-radius:100px;
-}
-progress[value]::-webkit-progress-bar {
-    background-color: white;
-    border-radius: 16px;
-    padding-left:50px
-}
-progress::-webkit-progress-bar {
-	height:40px;
-	width:80%;
-	margin:0 auto;
-	border-radius:10px;
+
+.progressbar {
+    border: solid 2px;
 }
 
-.health progress::-webkit-progress-value {
+.statName {
+    margin: 5px;
+}
+
+progress {
+    -webkit-appearance: none;
+    border: 5px;
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: white;
+}
+
+#health::-webkit-progress-value {
     background-color: red;
 }
 
-.armor progress::-webkit-progress-value {
+#armor::-webkit-progress-value {
     background-color: gray;
 }
 
-.strength progress::-webkit-progress-value {
+#strength::-webkit-progress-value {
     background-color: orange;
 }
 
-.speed progress::-webkit-progress-value {
+#speed::-webkit-progress-value {
     background-color: green;
 }
 
-.intelligence progress::-webkit-progress-value {
+#intelligence::-webkit-progress-value {
     background-color: blue;
 }

@@ -16,6 +16,9 @@
             <button class="button"><span>Exit game</span></button>
         </div>
         <div class="characterBlock" id="characterBlock">
+            <div class="gameProgressBlock">
+                <div class="           "></div>
+            </div>
             <div class="characterSelect">
                 <button class="character" onclick="selectKnight()"><img src="Images/Knight.png" alt="KnightCH"></button>
                 <button class="character" onclick="selectBerserker()"><img src="Images/Berserker.png" alt="BerserkerCH"></button>
@@ -26,21 +29,22 @@
                     <button class="button" onclick="tomainscreen()"><span>Back</span></button>
                 </div>
             </div>
-            <div class="characterstats" id="characterstats">
-                <div class="health">Health
-                    <progress id="health" value="100" max="100"></progress>
+            <div class="characterStats" id="characterStats">
+                <div class="characterName"></div>
+                <div class="statName">Health
+                    <progress class="progressbar" id="health" value="100" max="100"></progress>
                 </div>
-                <div class="armor">Armor
-                    <progress id="armor" value="100" max="100"></progress>
+                <div class="statName">Armor
+                    <progress class="progressbar" id="armor" value="100" max="100"></progress>
                 </div>
-                <div class="strength">Strength
-                    <progress id="strength" value="100" max="100"></progress>
+                <div class="statName">Strength
+                    <progress class="progressbar" id="strength" value="100" max="100"></progress>
                 </div>
-                <div class="speed">Speed
-                    <progress id="speed" value="100" max="100"></progress>
+                <div class="statName">Speed
+                    <progress class="progressbar" id="speed" value="100" max="100"></progress>
                 </div>
-                <div class="intelligence">Intelligence
-                    <progress id="intelligence" value="100" max="100"></progress>
+                <div class="statName">Intelligence
+                    <progress class="progressbar" id="intelligence" value="100" max="100"></progress>
                 </div>
             </div>
         </div>

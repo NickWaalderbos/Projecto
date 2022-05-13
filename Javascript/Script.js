@@ -13,8 +13,8 @@ function tomainscreen() {
 }
 
 function showstats() {
-    document.getElementById("characterstats").style.opacity = "1";
-    document.getElementById("characterstats").style.zIndex = "1";
+    document.getElementById("characterStats").style.opacity = "1";
+    document.getElementById("characterStats").style.zIndex = "1";
 }
 
 function selectHero(health, armor, strength, speed, intelligence) {
