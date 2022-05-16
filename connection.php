@@ -16,7 +16,7 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    //$error_message = $e->getMessage();
-    //include('ErrorPages/databaseErrors.php');
+    $error_message = $e->getMessage();
+    include('ErrorPages/databaseErrors.php');
     exit();
 }

@@ -41,6 +41,7 @@ function Check() {
     // EMAIL VALIDATION
     if (!validateEmail($("E-mail").value)) {
         $("emailError").innerHTML = "E-mail ongeldig";
+        validatie = false;
     }
     // VALIDATIE CHECK
     if (validatie == true) {

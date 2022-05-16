@@ -7,7 +7,7 @@
     <title>Error</title>
 </head>
 <body>
-    <p>test</p>
+<p>Neem contact op met de berheerder en geef hem dit door</p>
 <p>Error message: <?php echo $error_message; ?></p>
 </body>
 </html>

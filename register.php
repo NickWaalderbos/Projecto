@@ -8,33 +8,31 @@ unset($_SESSION['error']);
 if (isset($_POST['Back'])) {
     header("Location: inlog.php");
 }
-if (isset($_POST['Register'])) {
-    if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['E-mail'])) {
-        // SET VARIABLES
-        $checker = true;
-        $email = $_POST['E-mail'];
-        $username = $_POST['username'];
-        $password = $_POST['password']; 
-        $password2 = $_POST['password2'];
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $checker = false;
-        }
-        
-        if ($password !== $password2) {
-            $checker = false;
-        }
-        if ($checker == true) {
-            // QUERY
-            $query = $pdo->prepare("INSERT INTO users (username, password, email)
+if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['E-mail'])) {
+    // SET VARIABLES
+    $checker = true;
+    $email = $_POST['E-mail'];
+    $username = $_POST['username'];
+    $password = $_POST['password']; 
+    $password2 = $_POST['password2'];
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "email fout";
+        $checker = false;
+    }
+    if ($password !== $password2) {
+        $checker = false;
+        echo "wachtwoord fout";
+    }
+    if ($checker == true) {
+        // QUERY
+        $query = $pdo->prepare("INSERT INTO users (username, password, email)
             VALUES (:username, :password, :email)");
-            // BIND
-            $query->bindParam(':username', $username);
-            $query->bindParam(':password', $password);
-            $query->bindParam(':email', $email);
-    //
-        // EXECUTE QUERY
-            $query->execute();
-        }
+        // BIND
+        $query->bindParam(':username', $username);
+        $query->bindParam(':password', $password);
+        $query->bindParam(':email', $email);
+    // EXECUTE QUERY
+        $query->execute();
     }
 }
 ?>
@@ -63,7 +61,7 @@ if (isset($_POST['Register'])) {
             <label for="E-mail">E-mail</label>
             <input type="email" name="E-mail" id="E-mail"> 
             <div class="backButton">
-                <button class="button" type="submit" name="Register" onclick="Check()"><span>Register</span></button>
+                <button class="button" type="button" name="Register" onclick="Check()"><span>Register</span></button>
                 <button type="submit" class="button" name="Back"><span>Back</span></button>
             </div>
             <div class="errorSpans">
@@ -71,7 +69,6 @@ if (isset($_POST['Register'])) {
                 <span id="passwordError"></span>
                 <span id="passwordMatchError"></span>
                 <span id="emailError"></span>
-                <span id='accountAanmaak'></span>
             </div>
         </form>
     </div>
