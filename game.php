@@ -24,10 +24,10 @@
                 <div class="gameStage">Stage 5: X</div>
             </div>
             <div class="characterSelect" id="characterSelect">
-                <button class="character" id="knight" onclick="selectKnight()"><img src="Images/Knight.png" alt="KnightCH"></button>
-                <button class="character" id="berserker" onclick="selectBerserker()"><img src="Images/Berserker.png" alt="BerserkerCH"></button>
-                <button class="character" id="mage" onclick="selectMage()"><img src="Images/Mage.png" alt="MageCH"></button>
-                <button class="character" id="paladin" onclick="selectPaladin()"><img src="Images/Paladin.png" alt="PaladinCH"></button>
+                <button class="character" id="knight" onclick="selectHero('knight')"><img src="Images/Knight.png" alt="KnightCH"></button>
+                <button class="character" id="berserker" onclick="selectHero('berserker')"><img src="Images/Berserker.png" alt="BerserkerCH"></button>
+                <button class="character" id="mage" onclick="selectHero('mage')"><img src="Images/Mage.png" alt="MageCH"></button>
+                <button class="character" id="paladin" onclick="selectHero('paladin')"><img src="Images/Paladin.png" alt="PaladinCH"></button>
                 <div class="chooseBlock">
                     <button class="button" onclick=""><span>Select</span></button>
                     <button class="button" onclick="toMainscreen()"><span>Back</span></button>
