@@ -1,27 +1,18 @@
 body {
-    overflow: hidden;
     height: 720px;
     width: 1280px;
-    background-image: url("../Images/Background.png");
+}
+.Adventuregame {
+    height: 720px;
+    width: 1280px;
+    background-image: url("Background.jpg");
     background-repeat: no-repeat;
     resize: both;
     background-size: cover;
     background-position: center;
     border: 10px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> game
-.background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-<<<<<<< HEAD
-
-=======
->>>>>>> game
 .button {
     margin: 5px;
     width: 90%;
@@ -31,10 +22,7 @@ body {
 
 .button span {
     display: inline-block;
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> game
     transition: 0.5s;
     font-family: "Lucida Console", "Courier New", monospace;
 }
@@ -47,16 +35,11 @@ body {
     background-color: white;
 }
 
-<<<<<<< HEAD
-.buttonblock {
-=======
-.buttonBlock {
->>>>>>> game
-    position: relative;
+.Buttonblock {
     text-align: center;
     z-index: 1;
+    position: relative;
     top: 50%;
-<<<<<<< HEAD
     left: 50%;
     width: 10%;
     border-style: solid;
@@ -64,7 +47,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.characterblock {
+.Characterblock {
     text-align: center;
     z-index: -1;
     opacity: 0;
@@ -76,168 +59,3 @@ body {
     background-color: white;
     transform: translate(-50%, -50%);
 }
-
-.loginBlock {
-    text-align: center;
-    position: relative;
-    top: 35%;
-    left: 50%;
-    width: 20%;
-    border-style: solid;
-    background-color: white;
-    border-color: white;
-    transform: translate(-50%, -50%);
-    border-radius: 15px;
-    padding: 10px;
-}
-
-label {
-    margin: 5px;
-    text-align: center;
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-input {
-    margin: 5px;
-    text-align: center;
-    width: 90%;
-}
-
-.backButton {
-    display: flex;
-}
-
-.errorSpans {
-    display: flex;
-    flex-direction: column;
-    font-family: "Lucida Console", "Courier New", monospace;
-    color: red;
-}
-=======
-    left: 45%;
-    width: 10%;
-    border-style: solid;
-    background-color: white;
-    border-radius: 15px;
-    border-color: white;
-    padding: 10px;
-}
-
-.characterBlock {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    width: 60%;
-    position: relative;
-    text-align: center;
-    z-index: -1;
-    opacity: 0;
-    top: 30%;
-    left: 20%;
-    min-height: 180px;
-}
-
-.gameStageBlock {
-    margin: 10px;
-    z-index: 1;
-    opacity: 1;
-    width: 180px;
-    min-width: 180px;
-    position: relative;
-    text-align: center;
-    background-color: white;
-    border-radius: 15px;
-    border-color: white;
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.characterSelect {
-    margin: 10px;
-    text-align: center;
-    width: 225px;
-    min-width: 225px;
-    background-color: white;
-    border-radius: 15px;
-    border-color: white;
-    padding: 10px;
-}
-
-.characterStats {
-    margin: 10px;
-    z-index: -1;
-    opacity: 0;
-    position: relative;
-    text-align: center;
-    width: 180px;
-    min-width: 180px;
-    background-color: white;
-    border-radius: 15px;
-    border-color: white;
-    padding: 10px;
-    font-family: "Lucida Console", "Courier New", monospace;
-}
-
-.character {
-    width: 10%;
-    min-width: 100px;
-    height: 10%;
-    min-height: 100px;
-    margin: 5px;
-}
-
-.chooseBlock {
-    display: flex;
-}
-
-.characterSelect img {
-    width: 100%;
-}
-
-.progressbar {
-    border: solid 2px;
-}
-
-.statName {
-    margin: 5px;
-    text-align: right;
-}
-
-progress {
-    -webkit-appearance: none;
-    border: 5px;
-}
-
-progress[value]::-webkit-progress-bar {
-    background-color: white;
-}
-
-#health::-webkit-progress-value {
-    background-color: red;
-}
-
-#armor::-webkit-progress-value {
-    background-color: gray;
-}
-
-#strength::-webkit-progress-value {
-    background-color: orange;
-}
-
-#speed::-webkit-progress-value {
-    background-color: green;
-}
-
-#intelligence::-webkit-progress-value {
-    background-color: blue;
-}
-
-.characterName {
-    margin: 5px;
-    border-radius: 15px;
-    background-color: grey;
-    color: white;
-    padding: 5px;
-    margin-bottom: 10px;
-}
-
->>>>>>> game
