@@ -98,3 +98,11 @@ input {
     font-family: "Lucida Console", "Courier New", monospace;
     color: red;
 }
+.logOutContainer {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    left: 50%;
+    width: 15%;
+
+}
