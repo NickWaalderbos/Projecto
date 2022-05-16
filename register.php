@@ -33,6 +33,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
         $query->bindParam(':email', $email);
     // EXECUTE QUERY
         $query->execute();
+        header("Location: inlog.php");
     }
 }
 ?>
