@@ -1,8 +1,9 @@
+//Brings thing to the background
 function toBackground(i) {
     document.getElementById(i).style.opacity = "0";
     document.getElementById(i).style.zIndex = "-1";
 }
-
+//Brings thing to the foreground
 function toForeground(i) {
     document.getElementById(i).style.opacity = "1";
     document.getElementById(i).style.zIndex = "1";
@@ -21,11 +22,12 @@ function toMainscreen() {
 }
 
 function showStats(nameCharacter) {
+    nameCharacter = nameCharacter.toUpperCase();
     toForeground("characterStats")
     document.getElementById("characterName").innerText = nameCharacter;
 }
 
-function selectHero(health, armor, strength, speed, intelligence) {
+function selectValuesHero(health, armor, strength, speed, intelligence) {
     document.getElementById("health").value = health;
     document.getElementById("armor").value = armor;
     document.getElementById("strength").value = strength;
@@ -34,36 +36,28 @@ function selectHero(health, armor, strength, speed, intelligence) {
 }
 
 function boxShadow(nameCharacter) {
-    character = ["knight", "berserker", "mage", "paladin"]
-    for (let i = 0; i < character.length; i++) {
-        document.getElementById(character[i]).style.boxShadow = "0px 0px 0px black";
-    }
+    document.getElementById("knight").style.boxShadow = "0px 0px 0px black";
+    document.getElementById("berserker").style.boxShadow = "0px 0px 0px black";
+    document.getElementById("mage").style.boxShadow = "0px 0px 0px black";
+    document.getElementById("paladin").style.boxShadow = "0px 0px 0px black";
     if (nameCharacter != null) {
         document.getElementById(nameCharacter).style.boxShadow = "5px 5px 10px black";
+
     }
 }
 
-function selectKnight() {
-    selectHero(60, 55, 40, 45, 50)
-    showStats("Knight");
-    boxShadow("knight");
+function selectHero(nameCharacter) {
+    var arrCH = new Object();
+    arrCH["knight"] = [60, 55, 40, 45, 50];
+    arrCH["berserker"] = [70, 30, 65, 60, 25];
+    arrCH["mage"] = [55, 30, 40, 45, 80];
+    arrCH["paladin"] = [80, 70, 50, 20, 30];
+    selectValuesHero(arrCH[nameCharacter][0], arrCH[nameCharacter][1], arrCH[nameCharacter][2], arrCH[nameCharacter][3], arrCH[nameCharacter][4]);
+    boxShadow(nameCharacter);
+    showStats(nameCharacter);
 }
 
-function selectBerserker() {
-    selectHero(70, 30, 65, 60, 25)
-    showStats("Berserker");
-    boxShadow("berserker");
-
-}
-
-function selectMage() {
-    selectHero(55, 30, 40, 45, 80)
-    showStats("Mage");
-    boxShadow("mage");
-}
-
-function selectPaladin() {
-    selectHero(80, 70, 50, 20, 30)
-    showStats("Paladin");
-    boxShadow("paladin");
+function toArena() {
+    toBackground("characterBlock");
+    toBackground("characterStats");
 }
