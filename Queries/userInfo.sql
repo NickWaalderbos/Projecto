@@ -1,0 +1,1 @@
+CREATE TABLE user_info (id INT NOT NULL UNIQUE,stage int(1) NOT NULL, hero ENUM ("Knight","Beserker","Mage","Paladin") NOT NULL);

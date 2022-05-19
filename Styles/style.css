@@ -178,8 +178,25 @@ progress[value]::-webkit-progress-bar {
     left: 20%;
     min-height: 50%;
     flex-direction: column;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: red;
 }
+.logOutContainer {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    left: 50%;
+    width: 15%;
 
+}
+.errorbox {
+    text-align: center;
+    position: relative;
+    top: 10%;
+    left: 59%;
+    transform: translate(-50%, -50%);
+    color: cornflowerblue;
+}
 .characterSlots {
     height: 70%;
     display: flex;

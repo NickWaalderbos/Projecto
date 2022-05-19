@@ -10,30 +10,50 @@ if (isset($_POST['Back'])) {
 }
 if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['E-mail'])) {
     // SET VARIABLES
-    $checker = true;
-    $email = $_POST['E-mail'];
-    $username = $_POST['username'];
-    $password = $_POST['password']; 
-    $password2 = $_POST['password2'];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "email fout";
-        $checker = false;
-    }
-    if ($password !== $password2) {
-        $checker = false;
-        echo "wachtwoord fout";
-    }
-    if ($checker == true) {
-        // QUERY
-        $query = $pdo->prepare("INSERT INTO users (username, password, email)
+    try {
+        $checker = true;
+        $email = $_POST['E-mail'];
+        $username = $_POST['username'];
+        $password = $_POST['password']; 
+        $password2 = $_POST['password2'];
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "email fout";
+            $checker = false;
+        }
+        if ($password !== $password2) {
+            $checker = false;
+            echo "wachtwoord fout";
+        }
+        if ($checker == true) {
+            // QUERY
+            $query = $pdo->prepare("INSERT INTO users (username, password, email)
             VALUES (:username, :password, :email)");
-        // BIND
-        $query->bindParam(':username', $username);
-        $query->bindParam(':password', $password);
-        $query->bindParam(':email', $email);
-    // EXECUTE QUERY
-        $query->execute();
-        header("Location: inlog.php");
+            // BIND
+            $query->bindParam(':username', $username);
+            $query->bindParam(':password', $password);
+            $query->bindParam(':email', $email);
+        // EXECUTE QUERY
+            $query->execute();
+            header("Location: inlog.php");
+        }
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        if (strpos($error_message, "email") !== false) {
+            echo "<div class='errorbox'><h1>E-mail al in gebruik</h1>";
+            echo "<br>";
+            echo "<h1>Je word terug gestuurd naar het login scherm</h1></div>";
+            header('Refresh: 4; URL=inlog.php');
+        } else if (strpos($error_message, "username") !== false) {
+            echo "<div class='errorbox'><h1>Username al in gebruik</h1>";
+            echo "<br>";
+            echo "<h1>Je word terug gestuurd naar het register scherm</h1></div>";
+            header('Refresh: 4; URL=register.php');
+        } else {
+            echo "<h1>Neem contact op met de berheerder en geef hem dit door</h1>";
+            echo "<h1>Error message: <?php echo $error_message; ?></h1>";
+        }
+        include('ErrorPages/duplicateErrors.php');
+        exit();
     }
 }
 ?>

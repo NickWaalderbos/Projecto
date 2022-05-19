@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+unset($_SESSION['loggedInUser']); 
+header('Refresh: 6; URL=inlog.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Styles/style.css">
-    <title>Error</title>
+    <title>Logged out</title>
 </head>
 <body>
-    <div class="errorbox">
-<h1>Neem contact op met de berheerder en geef hem dit door</h1>
-<h1>Error message: <?php echo $error_message; ?></h1>
+    <div class="logOutContainer">
+    <h1>U bent uitgelogd</h1>
+    <h2>U word zo naar het inlog scherm gestuurd</h2>
     </div>
 </body>
 </html>
