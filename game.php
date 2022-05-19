@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
             <button class="button"><span>Exit game</span></button>
         </div>
         <div class="characterBlock" id="characterBlock">
-            <div class="gameStageBlock">
+            <div class="gameStageBlock" id="gameStageBlock">
                 <div class="gameStage">Stage 1: X</div>
                 <div class="gameStage">Stage 2: X</div>
                 <div class="gameStage">Stage 3: X</div>
@@ -29,7 +30,7 @@
                 <button class="character" id="mage" onclick="selectHero('mage')"><img src="Images/Mage.png" alt="MageCH"></button>
                 <button class="character" id="paladin" onclick="selectHero('paladin')"><img src="Images/Paladin.png" alt="PaladinCH"></button>
                 <div class="chooseBlock">
-                    <button class="button" onclick=""><span>Select</span></button>
+                    <button class="button" onclick="toArena()"><span>Select</span></button>
                     <button class="button" onclick="toMainscreen()"><span>Back</span></button>
                 </div>
             </div>
@@ -50,6 +51,30 @@
                 <div class="statName">Intelligence
                     <progress class="progressbar" id="intelligence" value="100" max="100"></progress>
                 </div>
+            </div>
+        </div>
+        <div class="arenaBlock" id="arenaBlock">
+            <div class="characterSlots">
+                <div class="characterSlot">
+                    <div class="picture" id="playerPicture"></div>
+                    <div class="progressBlock">
+                        <div class="statName">Health</div>
+                        <progress class="progress" id="playerHealth" value="100" max="100"></progress>
+                    </div>
+                </div>
+                <div class="characterSlot">
+                    <div class="picture" id="enemyPicture"></div>
+                    <div class="progressBlock">
+                        <div class="statName">Health</div>
+                        <progress class="progress" id="enemyHealth" value="100" max="100"></progress>
+                    </div>
+                </div>
+            </div>
+            <div class="buttonAttackBlock" id="buttonAttackBlock">
+                <button class="button" onclick="normalAttack()"><span>Normal attack</span></button>
+                <button class="button" onclick="magicAttack()"><span>Magic attack</span></button>
+                <button class="button" onclick="armor()"><span>Armor+</span></button>
+                <button class="button" onclick="speed()"><span>Speed+</span></button>
             </div>
         </div>
     </div>
