@@ -105,11 +105,13 @@ function toArena() {
 function normalAttack() {
     damage = 15 * (100 / arrCH[selectedCH][2])
     attack(damage);
+    console.log(damage);
 }
 
 function magicAttack() {
     damage = 20 * (100 / arrCH[selectedCH][4]);
     attack(damage);
+    console.log(damage);
 }
 
 function attack(damage) {
