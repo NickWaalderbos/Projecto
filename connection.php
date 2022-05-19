@@ -14,8 +14,8 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (Exception $e) {
+    $pdo = new PDO($dsn, $user, $pass);
+} catch (PDOException $e) {
     $error_message = $e->getMessage();
     include('ErrorPages/databaseErrors.php');
     exit();

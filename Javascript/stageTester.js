@@ -4,6 +4,7 @@ var $ = function (elementID) {
 
 }
 var stage = 0;
+//var stage = 0;
 function stageUp() {
     stage++;
     console.log("Stage up je bent nu op Stage: ");
