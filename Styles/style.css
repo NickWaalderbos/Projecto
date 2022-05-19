@@ -47,7 +47,6 @@ body {
     background-color: white;
     border-radius: 15px;
     border-color: white;
-    padding: 10px;
 }
 
 .characterBlock {
@@ -55,7 +54,7 @@ body {
     justify-content: center;
     flex-direction: row;
     width: 60%;
-    position: relative;
+    position: absolute;
     text-align: center;
     z-index: -1;
     opacity: 0;
@@ -66,8 +65,8 @@ body {
 
 .gameStageBlock {
     margin: 10px;
-    z-index: 1;
-    opacity: 1;
+    z-index: -1;
+    opacity: 0;
     width: 180px;
     min-width: 180px;
     position: relative;
@@ -100,7 +99,6 @@ body {
     background-color: white;
     border-radius: 15px;
     border-color: white;
-    padding: 10px;
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -127,6 +125,8 @@ body {
 .statName {
     margin: 5px;
     text-align: right;
+    font-family: "Lucida Console", "Courier New", monospace;
+    display: inline-block;
 }
 
 progress {
@@ -166,4 +166,76 @@ progress[value]::-webkit-progress-bar {
     padding: 5px;
     margin-bottom: 10px;
 }
+/* arena */
+.arenaBlock {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    left: 20%;
+    min-height: 50%;
+    flex-direction: column;
+}
 
+.characterSlots {
+    height: 70%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.characterSlot {
+    text-align: center;
+    width: 30%;
+    height: 70%;
+    min-width: 30%;
+    min-height: 70%;
+    margin: 5px;
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/*progress stats*/
+
+.progressBlock {
+    border-radius: 15px;
+    background-color: lightgrey;
+    width: 90%;
+    border: solid black;
+    display: inline-block;
+    margin: 10px;
+}
+
+.progressBlock .progress {
+    width: 70%;
+    border: solid black 2px;
+}
+
+.buttonAttackBlock {
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 50%;
+    text-align: center;
+    min-width: 30%;
+    min-height: 20%;
+    flex-wrap: wrap;
+    margin: auto;
+    position: relative;
+}
+
+.buttonAttackBlock button {
+    background-color: lightgrey;
+    margin: 5px;
+    min-height: 30%;
+    height: 100%;
+    width: 45%;
+    min-width: 40%;
+    max-height: 40%
+}
