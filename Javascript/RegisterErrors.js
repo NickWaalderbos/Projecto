@@ -11,15 +11,18 @@ const validateEmail = (email) => {
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
 };
-function Check() {
-    // SET VALIDATION TRUE
-    var validatie = true;
-    // UNSET SPAN FIELDS
+function spanEmpty() {
     $("usernameError").innerHTML = "";
     $("passwordError").innerHTML = "";
     $("emailError").innerHTML = "";
     $("passwordMatchError").innerHTML = "";
     $("emailError").innerHTML = "";
+}
+function Check() {
+    // SET VALIDATION TRUE
+    var validatie = true;
+    // UNSET SPAN FIELDS
+    spanEmpty();
     // IF EMPTY
     if ($("username").value == "") {
         $("usernameError").innerHTML = "Gebruikersnaam niet ingevuld";

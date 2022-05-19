@@ -8,9 +8,5 @@
     <title>Error</title>
 </head>
 <body>
-    <div class="errorbox">
-<h1>Neem contact op met de berheerder en geef hem dit door</h1>
-<h1>Error message: <?php echo $error_message; ?></h1>
-    </div>
 </body>
 </html>
