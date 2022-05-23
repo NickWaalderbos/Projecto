@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +9,13 @@
     <script src="Javascript/script.js"></script>
 </head>
 <body>
-    <div class="background">
-        <div class="buttonBlock" id="buttonBlock">
+    <div class="background" id="background">
+        <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
             <button class="button"><span>Options</span></button>
             <button class="button"><span>Exit game</span></button>
         </div>
-        <div class="characterBlock" id="characterBlock">
+        <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">
                 <div class="gameStage">Stage 1: X</div>
                 <div class="gameStage">Stage 2: X</div>
@@ -53,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="arenaBlock" id="arenaBlock">
+        <div class="block" id="arenaBlock">
             <div class="characterSlots">
                 <div class="characterSlot">
                     <div class="picture" id="playerPicture"></div>
@@ -75,6 +74,18 @@
                 <button class="button" onclick="magicAttack()"><span>Magic attack</span></button>
                 <button class="button" onclick="armor()"><span>Armor+</span></button>
                 <button class="button" onclick="speed()"><span>Speed+</span></button>
+            </div>
+        </div>
+        <div class="block" id="gameOverBlock">
+            <div class="gameOverButtons">
+                <button class="button" onclick="toArena()"><span>Retry</span></button>
+                <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+            </div>
+        </div>
+        <div class="block" id="nextGameBlock">
+            <div class="nextGameButtons">
+                <button class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
+                <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
             </div>
         </div>
     </div>

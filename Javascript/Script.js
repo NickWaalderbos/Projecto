@@ -1,7 +1,10 @@
 //Brings things to the background
-function toBackground(i) {
-    document.getElementById(i).style.opacity = "0";
-    document.getElementById(i).style.zIndex = "-1";
+function allToBackground() {
+    var messages = document.querySelectorAll(".block");
+    for (var i = 0; i < messages.length; i++) {
+        messages[i].style.opacity = "0";
+        messages[i].style.zIndex = "-1"
+    };
 }
 //Brings things to the foreground
 function toForeground(i) {
@@ -10,15 +13,13 @@ function toForeground(i) {
 }
 
 function toSelectCharacter() {
-    toBackground("buttonBlock");
+    allToBackground();
     toForeground("characterBlock");
 }
 
 function toMainscreen() {
+    allToBackground()
     toForeground("buttonBlock");
-    toBackground("characterBlock");
-    toBackground("characterStats");
-    toBackground("gameStageBlock")
     selectedCH = null;
     boxShadow();
 }
@@ -73,8 +74,8 @@ arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 var selectedEnemy = "enemy1";
 
 function selectHero(nameCharacter) {
-    selectedCH = nameCharacter;;
-    selectValuesHero(arrCH[nameCharacter][0], arrCH[nameCharacter][1], arrCH[nameCharacter][2], arrCH[nameCharacter][3], arrCH[nameCharacter][4]);
+    selectedCH = nameCharacter;
+    selectValuesHero(arrCH[selectedCH][0], arrCH[selectedCH][1], arrCH[selectedCH][2], arrCH[selectedCH][3], arrCH[selectedCH][4]);
     boxShadow();
     showStats();
     showGameStage();
@@ -94,32 +95,68 @@ function setStats() {
     document.getElementById("enemyHealth").max = arrEnemy[selectedEnemy][0];
 }
 function toArena() {
-    toBackground("characterBlock");
+    allToBackground();
     toForeground("arenaBlock");
     boxShadow(null);
     getImgs();
     setStats();
 }
-//Attacks and Buffs
+//Attacks and Buffs for player
+
+var playerarmor = arrCH[selectedCH][1];
+var playerspeed = arrCH[selectedCH][4];
 
 function normalAttack() {
-    damage = 15 * (100 / arrCH[selectedCH][2])
-    attack(damage);
-    console.log(damage);
+    var damage = 20 * (arrCH[selectedCH][2] / 100);
+    damage = damage * (arrEnemy[selectedEnemy][1] / 50);
+    document.getElementById("enemyHealth").value = playerAttack(damage);
 }
 
 function magicAttack() {
-    damage = 20 * (100 / arrCH[selectedCH][4]);
-    attack(damage);
-    console.log(damage);
+    var magicdamage = 20 * (arrCH[selectedCH][4] / 100);
+    document.getElementById("enemyHealth").value = playerAttack(magicdamage);
 }
 
-function attack(damage) {
+function playerArmor() {
+    playerarmor *= 0.1;
+}
+
+function playerSpeed() {
+    playerspeed *= 0.1;
+}
+
+function playerAttack(damage) {
     value = document.getElementById("enemyHealth").value;
-    total = value - damage;
-    if (total > 0) {
-        document.getElementById("enemyHealth").value = total;
+    if (chanceToDodge(arrEnemy[selectedEnemy][3]) == false) {
+        return value;
     } else {
-        enemyKilled();
+        total = value - damage;
+        if (total > 1) {
+            return total;
+        } else {
+            enemyKilled();
+            return 1;
+        }
     }
+}
+
+//Global function dodge
+
+function chanceToDodge(selected) {
+    random = Math.floor(Math.random() * 100);
+    if (random > selected) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function enemyKilled() {
+    toForeground("nextGameBlock")
+}
+
+//Attacks and Buffs for enemy
+
+function enemyTurn() {
+    random = Math.floor(Math.random() * 3);
 }
