@@ -32,37 +32,85 @@ if (isset($_POST['Back'])) {
     header("Location: game.php");
 }
 // UPDATE CHECKS
-if (isset($_POST['E-mail'])) {
-    $checker = true;
-    $email = $_POST['E-mail'];
-    $id = $_SESSION['loggedInUser'];
-    emailvalidate($email);
-    if ($checker == true) {
-        // QUERY
-        $query = $pdo->prepare("UPDATE users SET email = :email WHERE id = :id");
-        // BIND
-        $query->bindParam(':id', $id);
-        $query->bindParam(':email', $email);
-        queryexecute($query);
-    }
-}
-       
-
-
-
-
-
-
-
-
-
-
-
-
-        $email = $_POST['E-mail'];
+try {
+    // USERNAME
+    if (isset($_POST['username'])) {
+        $checker = true;
+        // IF EMPTY
+        if ($_POST['username'] == "") {
+            $checker = false;
+        }
         $username = $_POST['username'];
+        $id = $_SESSION['loggedInUser'];
+        if ($checker == true) {
+            // QUERY
+            $query = $pdo->prepare("UPDATE users SET username = :username WHERE id = :id");
+            // BIND
+            $query->bindParam(':id', $id);
+            $query->bindParam(':username', $username);
+            queryexecute($query);
+        }
+    }
+    // E-MAIL
+    if (isset($_POST['E-mail'])) {
+        $checker = true;
+        $email = $_POST['E-mail'];
+        // IF EMPTY
+        if ($_POST['E-mail'] == "") {
+            $checker = false;
+        }
+        $id = $_SESSION['loggedInUser'];
+        emailvalidate($email);
+        if ($checker == true) {
+        // QUERY
+            $query = $pdo->prepare("UPDATE users SET email = :email WHERE id = :id");
+        // BIND
+            $query->bindParam(':id', $id);
+            $query->bindParam(':email', $email);
+            queryexecute($query);
+        }
+    }
+    // PASSWORD
+    if (isset($_POST['password']) && isset($_POST['password2'])) {
+        $checker = true;
         $password = $_POST['password']; 
         $password2 = $_POST['password2'];
+        // IF EMPTY
+        if ($_POST['password'] == "") {
+            $checker = false;
+        }
+        $id = $_SESSION['loggedInUser'];
+    
+        if ($checker == true) {
+        // QUERY
+            $query = $pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
+        // BIND
+            $query->bindParam(':id', $id);
+            $query->bindParam(':password', $password);
+            queryexecute($query);
+        }
+    } 
+} catch (PDOException $e) {
+    $error_message = $e->getMessage();
+    // MAIL ERROR CATCH
+    if (strpos($error_message, "email") !== false) {
+        echo "<div class='errorbox'><h1>E-mail al in gebruik</h1>";
+        echo "<br>";
+        echo "<h1>Je word terug gestuurd naar het login scherm</h1></div>";
+        header('Refresh: 4; URL=inlog.php');
+    } else if (strpos($error_message, "username") !== false) {
+        // USERNAME ERROR CATCH
+        echo "<div class='errorbox'><h1>Username al in gebruik</h1>";
+        echo "<br>";
+        echo "<h1>Je word terug gestuurd naar het register scherm</h1></div>";
+        header('Refresh: 4; URL=register.php');
+    } else {
+        echo "<h1>Neem contact op met de berheerder en geef hem dit door</h1>";
+        echo "<h1>Error message: <?php echo $error_message; ?></h1>";
+    }
+    include('ErrorPages/duplicateErrors.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
