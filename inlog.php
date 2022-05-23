@@ -56,6 +56,7 @@ if (isset($_POST['login'])) {
         <form method="POST">
             <button type="submit" class="button" name="register"><span>Register</span></button>
         </form>
+        <!-- dit is Javascript vetrouw mij -->
         <?php if (isset($_SESSION['error'])) { ?>
             <div style="color: red;"><?= $_SESSION['error']; ?></div>
         <?php } ?>

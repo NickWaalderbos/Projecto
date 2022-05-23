@@ -23,14 +23,18 @@ function Check() {
     // UNSET SPAN FIELDS
     spanEmpty();
     // IF MATCHING
+    if ($("password").value !== "") {
     if ($("password").value !== $("password2").value) {
         $("passwordMatchError").innerHTML = "Wachtwoord is niet het zelfde";
         validatie = false;
+        }
     }
     // EMAIL VALIDATION
+    if ($("E-mail").value !== "") {
     if (!validateEmail($("E-mail").value)) {
         $("emailError").innerHTML = "E-mail ongeldig";
         validatie = false;
+    }
     }
     // VALIDATIE CHECK
     if (validatie == true) {
