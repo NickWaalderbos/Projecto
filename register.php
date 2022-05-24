@@ -4,7 +4,6 @@ include_once('connection.php');
 
 session_start();
 
-unset($_SESSION['error']);
 if (isset($_POST['Back'])) {
     header("Location: inlog.php");
 }

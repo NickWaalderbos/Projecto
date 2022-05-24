@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+// Kan niet naar deze pagina zonder succesvolle inlog
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: inlog.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +22,7 @@
         <div class="buttonBlock" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
             <button class="button"><span>Options</span></button>
-            <button class="button"><span>Exit game</span></button>
+            <button class="button" onclick="location.href='logout.php';"><span>Exit game</span></button>
         </div>
         <div class="characterBlock" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">
