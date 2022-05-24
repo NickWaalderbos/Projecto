@@ -4,7 +4,6 @@ include_once('connection.php');
 
 session_start();
 
-unset($_SESSION['error']);
 if (isset($_POST['register'])) {
     header("Location: register.php");
 }
@@ -25,11 +24,9 @@ if (isset($_POST['login'])) {
             die();
         }
     //
-        $_SESSION['error'] = "Gebruikersnaam of wachtwoord is ongeldig.";
+        setcookie("error", "Gebruikersnaam of wachtwoord is ongeldig.");
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -57,10 +54,12 @@ if (isset($_POST['login'])) {
             <button type="submit" class="button" name="register"><span>Register</span></button>
         </form>
         <!-- dit is Javascript vetrouw mij -->
-        <?php if (isset($_SESSION['error'])) { ?>
-            <div style="color: red;"><?= $_SESSION['error']; ?></div>
-        <?php } ?>
+
+        <div class="errorSpans">
+                <span id="loginError"></span>
+            </div>
     </div>
 </div>
+<script src='Javascript/InlogErrors.js'></script>
 </body>
 </html>

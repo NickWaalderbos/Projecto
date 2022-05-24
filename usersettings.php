@@ -3,6 +3,11 @@
 include_once('connection.php');
 
 session_start();
+// Kan niet naar deze pagina zonder succesvolle inlog
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: inlog.php");
+    exit;
+}
 // FUNCTIONS
 function emailvalidate($email)
 {
@@ -30,6 +35,17 @@ unset($_SESSION['error']);
 // BACK BUTTON
 if (isset($_POST['Back'])) {
     header("Location: game.php");
+}
+// DELETE ACCOUNT
+if (isset($_POST['Delete'])) {
+    $id = $_SESSION['loggedInUser'];
+    $query = $pdo->prepare("DELETE FROM users WHERE users .id = :id");
+    $query->bindParam(':id', $id);
+    queryexecute($query);
+    $query = $pdo->prepare("DELETE FROM user_info WHERE user_info .id = :id");
+    $query->bindParam(':id', $id);
+    queryexecute($query);
+    unset($_SESSION['loggedInUser']);
 }
 // UPDATE CHECKS
 try {
@@ -136,6 +152,7 @@ try {
 
             <label for="E-mail">Verander e-mail</label>
             <input type="email" name="E-mail" id="E-mail"> 
+            <button type="submit" class="button" id="deleteaccount" name="Delete"><span>Verwijder account</span></button>
             <div class="backButton">
                 <button class="button" type="button" name="Save" onclick="Check()"><span>Save</span></button>
                 <button type="submit" class="button" name="Back"><span>Back</span></button>
