@@ -53,8 +53,6 @@ if (isset($_POST['login'])) {
         <form method="POST">
             <button type="submit" class="button" name="register"><span>Register</span></button>
         </form>
-        <!-- dit is Javascript vetrouw mij -->
-
         <div class="errorSpans">
                 <span id="loginError"></span>
             </div>
