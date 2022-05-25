@@ -77,12 +77,14 @@
             </div>
         </div>
         <div class="block" id="gameOverBlock">
+            <h1>You lost</h1>
             <div class="gameOverButtons">
                 <button class="button" onclick="toArena()"><span>Retry</span></button>
                 <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
             </div>
         </div>
         <div class="block" id="nextGameBlock">
+            <h1>You won</h1>
             <div class="nextGameButtons">
                 <button class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
                 <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>

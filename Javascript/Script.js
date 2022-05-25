@@ -18,6 +18,8 @@ function toSelectCharacter() {
 }
 
 function toMainscreen() {
+    document.getElementById("playerPicture").firstChild.remove();
+    document.getElementById("enemyPicture").firstChild.remove();
     allToBackground()
     toForeground("buttonBlock");
     selectedCH = null;
@@ -81,6 +83,8 @@ function selectHero(nameCharacter) {
     showGameStage();
 }
 
+//Get images
+
 function getImgs() {
     var playerimg = document.createElement("img");
     playerimg.src = "Images/" + nameCharacter + ".png";
@@ -107,13 +111,15 @@ var playerarmor = arrCH[selectedCH][1];
 var playerspeed = arrCH[selectedCH][4];
 
 function normalAttack() {
-    var damage = 20 * (arrCH[selectedCH][2] / 100);
+    random = Math.floor(Math.random() * 20) + 10;
+    var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
     document.getElementById("enemyHealth").value = playerAttack(damage);
 }
 
 function magicAttack() {
-    var magicdamage = 20 * (arrCH[selectedCH][4] / 100);
+    random = Math.floor(Math.random() * 30) + 20;
+    var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
 }
 
@@ -152,6 +158,7 @@ function chanceToDodge(selected) {
 }
 
 function enemyKilled() {
+    allToBackground();
     toForeground("nextGameBlock")
 }
 
