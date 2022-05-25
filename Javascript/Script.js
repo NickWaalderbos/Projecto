@@ -76,6 +76,7 @@ arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 var selectedEnemy = "enemy1";
 
 function selectHero(nameCharacter) {
+    document.cookie = "CH=" + nameCharacter + "; " + "domain=localhost";
     selectedCH = nameCharacter;
     selectValuesHero(arrCH[selectedCH][0], arrCH[selectedCH][1], arrCH[selectedCH][2], arrCH[selectedCH][3], arrCH[selectedCH][4]);
     boxShadow();
@@ -158,8 +159,10 @@ function chanceToDodge(selected) {
 }
 
 function enemyKilled() {
+    document.cookie = "check=true; " + "domain=localhost";
+    document.cookie = "check=true; " + "domain=localhost";
     allToBackground();
-    toForeground("nextGameBlock")
+    toForeground("nextGameBlock");
 }
 
 //Attacks and Buffs for enemy

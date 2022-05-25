@@ -96,11 +96,11 @@
 <?php
 include_once('connection.php');
 session_start();
-$id = $_COOKIE['id'];
-$hero = $_COOKIE['CH'];
-$stage = $_COOKIE['stage'];
 setcookie("stage", "", time() - 3600);
-if ($stage > 1) {
+do {
+    $id = $_COOKIE['id'];
+    $hero = $_COOKIE['CH'];
+    $stage = $_COOKIE['stage'];
     $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
     // BIND
     $query->bindParam(':id', $id);
@@ -108,8 +108,5 @@ if ($stage > 1) {
     //$query->bindParam(':hero', $hero);
     // EXECUTE QUERY
     $query->execute();
-}
-if (isset($_POST['SEND'])) {
-    setcookie("stage", "", time() - 3600);
-}   $stage = $_COOKIE['stage'];
+} while (isset($_COOKIE['check']))
 ?>
