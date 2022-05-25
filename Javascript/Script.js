@@ -159,8 +159,13 @@ function chanceToDodge(selected) {
 }
 
 function enemyKilled() {
-    document.cookie = "check=true; " + "domain=localhost";
-    document.cookie = "check=true; " + "domain=localhost";
+    stage = getCookieValue("stage");
+    if (stage < 1) {
+        stage = 1;
+    } else {
+        stage++;
+    }
+    document.cookie = "stage=" + stage + "; " + "domain=localhost";
     allToBackground();
     toForeground("nextGameBlock");
 }
@@ -169,4 +174,8 @@ function enemyKilled() {
 
 function enemyTurn() {
     random = Math.floor(Math.random() * 3);
+}
+
+function getCookieValue(name) {
+    return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
 }

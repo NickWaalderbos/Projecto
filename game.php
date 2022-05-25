@@ -1,3 +1,27 @@
+<?php
+session_start();
+include_once('connection.php');
+//setcookie("stage", "", time() - 3600);
+$id = 1;    //$_SESSION['loggedInUser']
+$query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
+$query->bindParam(':id', $id);
+$query->execute();
+$stage = $query->fetch();
+if ($stage !== true) {
+    setcookie("stage", $stage["stage"], time() - 9999, "/");
+}
+
+if (isset($_POST['save'])) {
+    $stage = $_COOKIE['stage'];
+    $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+    // BIND
+    $query->bindParam(':stage', $stage);
+    $query->bindParam(':id', $id);
+    // EXECUTE QUERY
+    $query->execute();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,27 +110,12 @@
         <div class="block" id="nextGameBlock">
             <h1>You won</h1>
             <div class="nextGameButtons">
-                <button class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
-                <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+                <form method="POST">
+                    <button type="submit" name="save" class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
+                    <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+                </form>
             </div>
         </div>
     </div>
 </body>
 </html>
-<?php
-include_once('connection.php');
-session_start();
-setcookie("stage", "", time() - 3600);
-do {
-    $id = $_COOKIE['id'];
-    $hero = $_COOKIE['CH'];
-    $stage = $_COOKIE['stage'];
-    $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
-    // BIND
-    $query->bindParam(':id', $id);
-    $query->bindParam(':stage', $stage);
-    //$query->bindParam(':hero', $hero);
-    // EXECUTE QUERY
-    $query->execute();
-} while (isset($_COOKIE['check']))
-?>
