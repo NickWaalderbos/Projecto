@@ -8,21 +8,21 @@ $stage = $_COOKIE['stage'];
 setcookie("stage", "", time() - 3600);
 echo $stage;
 if ($stage > 1) {
-    /*$query = $pdo->prepare("INSERT INTO user_info (id, stage, hero)
-            VALUES (:id, :stage, :hero)"); */
-            $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+        /*$query = $pdo->prepare("INSERT INTO user_info (id, stage, hero)
+        VALUES (:id, :stage, :hero)"); */
+        $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
         // BIND
         $query->bindParam(':id', $id);
         $query->bindParam(':stage', $stage);
         //$query->bindParam(':hero', $hero);
-    // EXECUTE QUERY
+        // EXECUTE QUERY
         $query->execute();
 }
 if (isset($_POST['SEND'])) {
     setcookie("stage", "", time() - 3600);
 }   $stage = $_COOKIE['stage'];
- 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
