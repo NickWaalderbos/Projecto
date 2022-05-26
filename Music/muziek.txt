@@ -1,0 +1,7 @@
+game muziek = https://www.youtube.com/watch?v=FT6PZUTdd04&t wario pinball
+game over = https://www.youtube.com/watch?v=sgejt0FMjRo super mario world game over OST 
+speed+ = https://www.youtube.com/watch?v=4ycDWohnB4g
+armor+ = https://www.youtube.com/watch?v=9Lncmfnq6Og
+magic attack = https://www.youtube.com/watch?v=P1zZ77BWOtM
+normal attack = https://www.youtube.com/watch?v=dxb2mY0zQZs
+

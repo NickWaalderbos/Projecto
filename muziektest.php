@@ -8,12 +8,14 @@
 </head>
 <body>
 <div class="slidecontainer">
-<audio id="myAudio">
-  <source src="muziek.mp3" type="audio/mpeg">
-</audio>
-  <input id="slider" onclick="volumeslide()" type="range" min="0" max="100" value="50">
+<audio loop id="myAudio"> <source src="muziek.mp3" type="audio/mpeg"> </audio>
+<audio loop id="myAudio1"> <source src="muziek1.mp3" type="audio/mpeg"> </audio>
+  <input id="slider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
   <br><span id="blok"></span>
+  <input id="slider1" onclick="effectslide()" type="range" min="0" max="100" value="100">
+  <br>
   <button onclick="playAudio()" type="button">Play Audio</button>
+  <br><span id="blok1"></span>
   <button onclick="pauseAudio()" type="button">Pause Audio</button> 
 </div>
 <script src='Javascript/muziektest.js'></script>
