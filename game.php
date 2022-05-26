@@ -30,14 +30,33 @@ if (isset($_POST['save'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="Styles/style.css">
-    <script src="Javascript/script.js"></script>
+    <script src="Javascript/script.js" defer></script>
 </head>
 <body>
     <div class="background" id="background">
         <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
-            <button class="button"><span>Options</span></button>
+            <button class="button" onclick="toSettings()"><span>Options</span></button>
             <button class="button"><span>Exit game</span></button>
+        </div>
+        <div class="settingsBlock" id="settingsBlock">
+            <div class="slidecontainer" >
+                <audio loop id="mainMusic"> <source src="Music/mainMusic.mp3" type="audio/mpeg"> </audio>
+                <audio loop id="gameOver"> <source src="Music/gameOver.mp3" type="audio/mpeg"> </audio>
+                <audio id="armor+"> <source src="Music/armor+.mp3" type="audio/mpeg"> </audio> 
+                <audio id="magicAttack"> <source src="Music/magicAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="normalAttack"> <source src="Music/normalAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="speed+"> <source src="Music/speed+.mp3" type="audio/mpeg"> </audio>
+                <!-- Dit called alle muziek -->
+                <h3>Muziek volume</h3>
+                <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
+                <h3>SFX volume</h3>
+                <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
+                <div class="chooseBlock">
+                <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
+                <button class="button" onclick="toMainscreen()"><span>Back</span></button>
+                </div>
+            </div>
         </div>
         <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">

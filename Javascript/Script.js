@@ -1,3 +1,15 @@
+var $ = function (elementID) {
+
+    return document.getElementById(elementID);
+
+}
+// Set all music in variable to be called for when needed
+var music = $("mainMusic");
+var normalAttack = $("normalAttack");
+var gameOver = $("gameOver");
+var armor = $("armor+");
+var speed = $("speed+");
+var magicAttack = $("magicAttack");
 //Brings things to the background
 function allToBackground() {
     var messages = document.querySelectorAll(".block");
@@ -18,14 +30,18 @@ function toSelectCharacter() {
 }
 
 function toMainscreen() {
-    document.getElementById("playerPicture").firstChild.remove();
-    document.getElementById("enemyPicture").firstChild.remove();
+    //document.getElementById("playerPicture").firstChild.remove(); // deze 2 bestaan niet altijd bvb als je op de opties menu zit
+    // Hier door kan hij niet null removen en geeft hij een error :)
+    //document.getElementById("enemyPicture").firstChild.remove();
     allToBackground()
     toForeground("buttonBlock");
     selectedCH = null;
     boxShadow();
 }
-
+function toSettings() {
+    allToBackground();
+    toForeground("settingsBlock");
+}
 function showStats() {
     nameCharacter = selectedCH.toUpperCase();
     document.getElementById("characterName").innerText = nameCharacter;
@@ -108,8 +124,8 @@ function toArena() {
 }
 //Attacks and Buffs for player
 
-var playerarmor = arrCH[selectedCH][1];
-var playerspeed = arrCH[selectedCH][4];
+//var playerarmor = arrCH[selectedCH][1]; dit doet het niet en breekt alle code er onder plz fix
+//var playerspeed = arrCH[selectedCH][4];
 
 function normalAttack() {
     random = Math.floor(Math.random() * 20) + 10;
@@ -178,4 +194,36 @@ function enemyTurn() {
 
 function getCookieValue(name) {
     return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+}
+//Muziek en volume
+
+
+function volumeslide() {
+    let volumeMuziek = $("MuziekSlider"); // SLIDER VALUE
+    volumeNumber = volumeMuziek.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
+    music.volume = volumeNumber; // VOLUME CHANGE
+    gameOver.volume = volumeNumber; // VOLUME CHANGE
+}
+function effectslide() {
+    let volumeEffect = $("SFXslider"); // SLIDER VALUE
+    volumeNumber = volumeEffect.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
+    armor.volume = volumeNumber; // VOLUME CHANGE
+    speed.volume = volumeNumber; // VOLUME CHANGE
+    normalAttack.volume = volumeNumber; // VOLUME CHANGE
+    magicAttack.volume = volumeNumber; // VOLUME CHANGE
+}
+/* Dit zijn test functies
+Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
+*/
+function playAudio() {
+    music.play();
+    gameOver.play();
+    normalAttack.play();
+    magicAttack.play();
+}
+function pauseAudio() {
+    music.pause();
+    gameOver.pause();
+    normalAttack.pause();
+    magicAttack.pause();
 }
