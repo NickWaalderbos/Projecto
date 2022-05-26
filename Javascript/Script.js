@@ -5,11 +5,11 @@ var $ = function (elementID) {
 }
 // Set all music in variable to be called for when needed
 var music = $("mainMusic");
-var normalAttack = $("normalAttack");
+var normalAttackSound = $("normalAttack");
 var gameOver = $("gameOver");
 var armor = $("armor+");
 var speed = $("speed+");
-var magicAttack = $("magicAttack");
+var magicAttackSound = $("magicAttack");
 //Brings things to the background
 function allToBackground() {
     var messages = document.querySelectorAll(".block");
@@ -30,8 +30,10 @@ function toSelectCharacter() {
 }
 
 function toMainscreen() {
-    //document.getElementById("playerPicture").firstChild.remove(); // deze 2 bestaan niet altijd bvb als je op de opties menu zit
+    //document.getElementById("playerPicture").firstChild.remove(); 
+    // deze 2 bestaan niet altijd bvb als je op de opties menu zit
     // Hier door kan hij niet null removen en geeft hij een error :)
+    // En de error breekt de back buttons
     //document.getElementById("enemyPicture").firstChild.remove();
     allToBackground()
     toForeground("buttonBlock");
@@ -123,9 +125,8 @@ function toArena() {
     setStats();
 }
 //Attacks and Buffs for player
-
-//var playerarmor = arrCH[selectedCH][1]; dit doet het niet en breekt alle code er onder plz fix
-//var playerspeed = arrCH[selectedCH][4];
+var playerarmor = arrCH[selectedCH][1]; //dit doet het niet en breekt alle code er onder plz fix
+var playerspeed = arrCH[selectedCH][4];
 
 function normalAttack() {
     random = Math.floor(Math.random() * 20) + 10;
@@ -209,8 +210,8 @@ function effectslide() {
     volumeNumber = volumeEffect.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
     armor.volume = volumeNumber; // VOLUME CHANGE
     speed.volume = volumeNumber; // VOLUME CHANGE
-    normalAttack.volume = volumeNumber; // VOLUME CHANGE
-    magicAttack.volume = volumeNumber; // VOLUME CHANGE
+    normalAttackSound.volume = volumeNumber; // VOLUME CHANGE
+    magicAttackSound.volume = volumeNumber; // VOLUME CHANGE
 }
 /* Dit zijn test functies
 Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
@@ -218,12 +219,12 @@ Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
 function playAudio() {
     music.play();
     gameOver.play();
-    normalAttack.play();
-    magicAttack.play();
+    normalAttackSound.play();
+    magicAttackSound.play();
 }
 function pauseAudio() {
     music.pause();
     gameOver.pause();
-    normalAttack.pause();
-    magicAttack.pause();
+    normalAttackSound.pause();
+    magicAttackSound.pause();
 }
