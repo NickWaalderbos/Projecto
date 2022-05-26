@@ -30,11 +30,13 @@ function toSelectCharacter() {
 }
 
 function toMainscreen() {
-    //document.getElementById("playerPicture").firstChild.remove(); 
-    // deze 2 bestaan niet altijd bvb als je op de opties menu zit
-    // Hier door kan hij niet null removen en geeft hij een error :)
-    // En de error breekt de back buttons
-    //document.getElementById("enemyPicture").firstChild.remove();
+    //Checks if its set then removes it
+    if (document.getElementById("playerPicture").firstChild) {
+        document.getElementById("playerPicture").firstChild.remove(); 
+}
+    if (document.getElementById("enemyPicture").firstChild) {
+        document.getElementById("enemyPicture").firstChild.remove();
+}
     allToBackground()
     toForeground("buttonBlock");
     selectedCH = null;
