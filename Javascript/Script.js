@@ -3,6 +3,23 @@ var $ = function (elementID) {
     return document.getElementById(elementID);
 
 }
+window.addEventListener('load', (event) => {
+    volumecookie = getCookieValue("muziek");
+    effectscookie = getCookieValue("effects");
+    // Checks if cookies are set then executes volume
+    if (effectscookie) {
+        armor.volume = effectscookie; // Effects
+        speed.volume = effectscookie;
+        normalAttackSound.volume = effectscookie;
+        magicAttackSound.volume = effectscookie;
+        $("SFXslider").value = effectscookie * 100;
+    }
+    if (volumecookie) {
+        music.volume = volumecookie; // Muziek
+        gameOver.volume = volumecookie;
+        $("MuziekSlider").value = volumecookie * 100;
+    }
+});
 // Set all music in variable to be called for when needed
 var music = $("mainMusic");
 var normalAttackSound = $("normalAttack");
@@ -206,6 +223,7 @@ function volumeslide() {
     volumeNumber = volumeMuziek.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
     music.volume = volumeNumber; // VOLUME CHANGE
     gameOver.volume = volumeNumber; // VOLUME CHANGE
+    document.cookie = "muziek=" + volumeNumber + "; " + "domain=localhost";
 }
 function effectslide() {
     let volumeEffect = $("SFXslider"); // SLIDER VALUE
@@ -214,6 +232,7 @@ function effectslide() {
     speed.volume = volumeNumber; // VOLUME CHANGE
     normalAttackSound.volume = volumeNumber; // VOLUME CHANGE
     magicAttackSound.volume = volumeNumber; // VOLUME CHANGE
+    document.cookie = "effects=" + volumeNumber + "; " + "domain=localhost";
 }
 /* Dit zijn test functies
 Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
