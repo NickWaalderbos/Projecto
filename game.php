@@ -10,6 +10,7 @@ $stage = $query->fetch();
 if ($stage !== true) {
     setcookie("stage", $stage["stage"], time() - 9999, "/");
 }
+setcookie("stage", 1, time() - 9999, "/");
 
 if (isset($_POST['save'])) {
     $stage = $_COOKIE['stage'];
@@ -30,7 +31,7 @@ if (isset($_POST['save'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="Styles/style.css">
-    <script src="Javascript/script.js"></script>
+    <script src="Javascript/script.js" defer></script>
 </head>
 <body>
     <div class="background" id="background">
@@ -96,14 +97,14 @@ if (isset($_POST['save'])) {
             <div class="buttonAttackBlock" id="buttonAttackBlock">
                 <button class="button" onclick="normalAttack()"><span>Normal attack</span></button>
                 <button class="button" onclick="magicAttack()"><span>Magic attack</span></button>
-                <button class="button" onclick="armor()"><span>Armor+</span></button>
-                <button class="button" onclick="speed()"><span>Speed+</span></button>
+                <button class="button" onclick="playerArmor()"><span>Armor+</span></button>
+                <button class="button" onclick="playerSpeed()"><span>Speed+</span></button>
             </div>
         </div>
         <div class="block" id="gameOverBlock">
             <h1>You lost</h1>
             <div class="gameOverButtons">
-                <button class="button" onclick="toArena()"><span>Retry</span></button>
+                <button class="button" onclick="retry()"><span>Retry</span></button>
                 <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
             </div>
         </div>

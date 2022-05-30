@@ -18,12 +18,18 @@ function toSelectCharacter() {
 }
 
 function toMainscreen() {
+    allToBackground();
+    toForeground("buttonBlock");
+    boxShadow();
+    resetHealthPic();
+    selectedCH = null;
+}
+
+function resetHealthPic() {
     document.getElementById("playerPicture").firstChild.remove();
     document.getElementById("enemyPicture").firstChild.remove();
-    allToBackground()
-    toForeground("buttonBlock");
-    selectedCH = null;
-    boxShadow();
+    document.getElementById("playerHealth").value = arrCH[selectedCH][0];
+    document.getElementById("enemyHealth").value = arrEnemy[selectedEnemy][0];
 }
 
 function showStats() {
@@ -66,14 +72,15 @@ var selectedCH;
 
 //Enemy stats
 const arrEnemy = new Object();
-arrEnemy["enemy1"] = [60, 60, 40, 45, 50];
-arrEnemy["enemy2"] = [70, 30, 65, 60, 25];
-arrEnemy["enemy3"] = [55, 30, 40, 45, 80];
+arrEnemy["enemy1"] = [70, 30, 65, 60, 25];
+arrEnemy["enemy2"] = [70, 30, 65, 40, 65];
+arrEnemy["enemy3"] = [55, 30, 40, 70, 50];
 arrEnemy["enemy4"] = [80, 70, 50, 20, 30];
 arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 
 //Global enemy
-var selectedEnemy = "enemy1";
+var selectedEnemy = "enemy" + getCookieValue("stage");
+console.log(getCookieValue("stage"));
 
 function selectHero(nameCharacter) {
     document.cookie = "CH=" + nameCharacter + "; " + "domain=localhost";
@@ -98,6 +105,7 @@ function getImgs() {
 
 function setStats() {
     document.getElementById("enemyHealth").max = arrEnemy[selectedEnemy][0];
+    document.getElementById("playerHealth").max = arrCH[selectedCH][0];
 }
 function toArena() {
     allToBackground();
@@ -108,28 +116,36 @@ function toArena() {
 }
 //Attacks and Buffs for player
 
-var playerarmor = arrCH[selectedCH][1];
-var playerspeed = arrCH[selectedCH][4];
+if (typeof arrCH[0] != "undefined") {
+    var playerarmor = arrCH[selectedCH][1];
+    var playerspeed = arrCH[selectedCH][4];
+}
 
 function normalAttack() {
-    random = Math.floor(Math.random() * 20) + 10;
+    random = Math.floor(Math.random() * 20) + 5;
     var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
     document.getElementById("enemyHealth").value = playerAttack(damage);
+    enemyTurn()
 }
 
 function magicAttack() {
-    random = Math.floor(Math.random() * 30) + 20;
+    random = Math.floor(Math.random() * 25) + 10
     var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
+    enemyTurn()
 }
 
 function playerArmor() {
-    playerarmor *= 0.1;
+    playerarmor *= 0.3;
+    enemyTurn()
+    playerarmor = arrCH[selectedCH][1];
 }
 
 function playerSpeed() {
-    playerspeed *= 0.1;
+    playerspeed *= 0.3;
+    enemyTurn()
+    playerspeed = arrCH[selectedCH][4];
 }
 
 function playerAttack(damage) {
@@ -151,17 +167,20 @@ function playerAttack(damage) {
 
 function chanceToDodge(selected) {
     random = Math.floor(Math.random() * 100);
-    if (random > selected) {
+    if (random < selected) {
         return false;
     } else {
         return true;
     }
 }
+//next stage to database
 
 function enemyKilled() {
     stage = getCookieValue("stage");
     if (stage < 1) {
         stage = 1;
+    } else if (stage > 5) {
+        stage = 5;
     } else {
         stage++;
     }
@@ -170,12 +189,79 @@ function enemyKilled() {
     toForeground("nextGameBlock");
 }
 
-//Attacks and Buffs for enemy
-
-function enemyTurn() {
-    random = Math.floor(Math.random() * 3);
-}
+//get value of the cookie
 
 function getCookieValue(name) {
     return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
 }
+
+//Attacks and Buffs for enemy
+
+function enemyTurn() {
+    arrEnemy[selectedEnemy][1];
+    arrEnemy[selectedEnemy][4];
+    random = Math.floor(Math.random() * 3);
+    if (random = 0) {
+        normalAttackEnemy()
+    } else if (random = 1) {
+        magicAttackEnemy()
+    } else if (random = 2) {
+        ArmorEnemy()
+    } else if (random = 3) {
+        SpeedEnemy()
+    }
+}
+
+//Attacks and Buffs for the enemy
+
+if (typeof arrEnemy[0] != "undefined") {
+    var enemyArmor = arrEnemy[selectedEnemy][1];
+    var enemySpeed = arrEnemy[selectedEnemy][4];
+}
+
+function normalAttackEnemy() {
+    random = Math.floor(Math.random() * 20) + 5;
+    var damage = random * (arrEnemy[selectedEnemy][2] / 100);
+    damage = damage * (arrCH[selectedCH][2] / 50);
+    document.getElementById("playerHealth").value = enemyAttack(damage);
+}
+
+function magicAttackEnemy() {
+    random = Math.floor(Math.random() * 25) + 10;
+    var magicdamage = random * (arrEnemy[selectedEnemy][4] / 100);
+    document.getElementById("playerHealth").value = enemyAttack(magicdamage);
+}
+
+function ArmorEnemy() {
+    enemyArmor *= 0.3;
+}
+
+function SpeedEnemy() {
+    enemySpeed *= 0.3;
+}
+enemySpeed
+function enemyAttack(damage) {
+    value = document.getElementById("playerHealth").value;
+    if (chanceToDodge(arrCH[selectedCH][3]) == false) {
+        return value;
+    } else {
+        total = value - damage;
+        if (total > 1) {
+            return total;
+        } else {
+            playerKilled();
+            return 1;
+        }
+    }
+}
+
+function playerKilled() {
+    allToBackground();
+    toForeground("gameOverBlock");
+}
+
+function retry() {
+    resetHealthPic()
+    toArena();
+}
+
