@@ -3,6 +3,15 @@ var $ = function (elementID) {
     return document.getElementById(elementID);
 
 }
+
+// Set all music in variable to be called for when needed
+var music = $("mainMusic");
+var normalAttackSound = $("normalAttack");
+var gameOver = $("gameOver");
+var armor = $("armor+");
+var speed = $("speed+");
+var magicAttackSound = $("magicAttack");
+music.play();
 window.addEventListener('load', (event) => {
     volumecookie = getCookieValue("muziek");
     effectscookie = getCookieValue("effects");
@@ -20,13 +29,6 @@ window.addEventListener('load', (event) => {
         $("MuziekSlider").value = volumecookie * 100;
     }
 });
-// Set all music in variable to be called for when needed
-var music = $("mainMusic");
-var normalAttackSound = $("normalAttack");
-var gameOver = $("gameOver");
-var armor = $("armor+");
-var speed = $("speed+");
-var magicAttackSound = $("magicAttack");
 
 //Brings things to the background
 function allToBackground() {
@@ -325,9 +327,9 @@ Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
 */
 function playAudio() {
     music.play();
-    gameOver.play();
-    normalAttackSound.play();
-    magicAttackSound.play();
+    //gameOver.play();
+    //normalAttackSound.play();
+    //magicAttackSound.play();
 }
 function pauseAudio() {
     music.pause();
