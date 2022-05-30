@@ -10,6 +10,7 @@ $stage = $query->fetch();
 if ($stage !== true) {
     setcookie("stage", $stage["stage"], time() - 9999, "/");
 }
+setcookie("stage", 1, time() - 9999, "/");
 
 if (isset($_POST['save'])) {
     $stage = $_COOKIE['stage'];
@@ -38,25 +39,6 @@ if (isset($_POST['save'])) {
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
             <button class="button" onclick="toSettings()"><span>Options</span></button>
             <button class="button"><span>Exit game</span></button>
-        </div>
-        <div class="settingsBlock" id="settingsBlock">
-            <div class="slidecontainer" >
-                <audio loop id="mainMusic"> <source src="Music/mainMusic.mp3" type="audio/mpeg"> </audio>
-                <audio loop id="gameOver"> <source src="Music/gameOver.mp3" type="audio/mpeg"> </audio>
-                <audio id="armor+"> <source src="Music/armor+.mp3" type="audio/mpeg"> </audio> 
-                <audio id="magicAttack"> <source src="Music/magicAttack.mp3" type="audio/mpeg"> </audio>
-                <audio id="normalAttack"> <source src="Music/normalAttack.mp3" type="audio/mpeg"> </audio>
-                <audio id="speed+"> <source src="Music/speed+.mp3" type="audio/mpeg"> </audio>
-                <!-- Dit called alle muziek -->
-                <h3>Muziek volume</h3>
-                <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
-                <h3>SFX volume</h3>
-                <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
-                <div class="chooseBlock">
-                <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
-                <button class="button" onclick="toMainscreen()"><span>Back</span></button>
-                </div>
-            </div>
         </div>
         <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">
@@ -115,14 +97,14 @@ if (isset($_POST['save'])) {
             <div class="buttonAttackBlock" id="buttonAttackBlock">
                 <button class="button" onclick="normalAttack()"><span>Normal attack</span></button>
                 <button class="button" onclick="magicAttack()"><span>Magic attack</span></button>
-                <button class="button" onclick="armor()"><span>Armor+</span></button>
-                <button class="button" onclick="speed()"><span>Speed+</span></button>
+                <button class="button" onclick="playerArmor()"><span>Armor+</span></button>
+                <button class="button" onclick="playerSpeed()"><span>Speed+</span></button>
             </div>
         </div>
         <div class="block" id="gameOverBlock">
             <h1>You lost</h1>
             <div class="gameOverButtons">
-                <button class="button" onclick="toArena()"><span>Retry</span></button>
+                <button class="button" onclick="retry()"><span>Retry</span></button>
                 <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
             </div>
         </div>
@@ -133,6 +115,25 @@ if (isset($_POST['save'])) {
                     <button type="submit" name="save" class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
                     <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
                 </form>
+            </div>
+        </div>
+        <div class="settingsBlock" id="settingsBlock">
+            <div class="slidecontainer" >
+                <audio loop id="mainMusic"> <source src="Music/mainMusic.mp3" type="audio/mpeg"> </audio>
+                <audio loop id="gameOver"> <source src="Music/gameOver.mp3" type="audio/mpeg"> </audio>
+                <audio id="armor+"> <source src="Music/armor+.mp3" type="audio/mpeg"> </audio>
+                <audio id="magicAttack"> <source src="Music/magicAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="normalAttack"> <source src="Music/normalAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="speed+"> <source src="Music/speed+.mp3" type="audio/mpeg"> </audio>
+                <!-- Dit called alle muziek -->
+                <h3>Muziek volume</h3>
+                <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
+                <h3>SFX volume</h3>
+                <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
+                <div class="chooseBlock">
+                    <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
+                    <button class="button" onclick="toMainscreen()"><span>Back</span></button>
+                </div>
             </div>
         </div>
     </div>
