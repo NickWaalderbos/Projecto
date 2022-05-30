@@ -70,16 +70,16 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
     <div class="loginBlock">
         <form method="POST" id="registerButton">
             <label for="username">Gebruikersnaam</label>
-            <input type="text" name="username" id="username"> 
+            <input type="text" name="username" id="username" autocomplete="off"> 
 
             <label for="password">Wachtwoord</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" autocomplete="off">
 
             <label for="password2"> Herhaal wachtwoord</label>
-            <input type="password" name="password2" id="password2">
+            <input type="password" name="password2" id="password2" autocomplete="off">
 
             <label for="E-mail">E-mail</label>
-            <input type="email" name="E-mail" id="E-mail"> 
+            <input type="email" name="E-mail" id="E-mail" autocomplete="off"> 
             <div class="backButton">
                 <button class="button" type="button" name="Register" onclick="Check()"><span>Register</span></button>
                 <button type="submit" class="button" name="Back"><span>Back</span></button>
@@ -96,3 +96,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
 <script src='Javascript/RegisterErrors.js'></script>
 </body>
 </html>
+<?php
+include_once('Footers/mainFooter.html');
+?>
