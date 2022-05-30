@@ -112,7 +112,12 @@ arrEnemy["enemy4"] = [80, 70, 50, 20, 30];
 arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 
 //Global enemy
-var selectedEnemy = "enemy" + getCookieValue("stage");
+if (getCookieValue("stage") < 1) {
+    var selectedEnemy = "enemy1";
+} else {
+    var selectedEnemy = "enemy" + getCookieValue("stage");
+}
+
 console.log(getCookieValue("stage"));
 
 function selectHero(nameCharacter) {
@@ -301,8 +306,8 @@ function retry() {
 function getCookieValue(name) {
     return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
 }
-//Muziek en volume
 
+//Muziek en volume
 
 function volumeslide() {
     let volumeMuziek = $("MuziekSlider"); // SLIDER VALUE

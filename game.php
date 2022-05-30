@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once('connection.php');
-//setcookie("stage", "", time() - 3600);
+//setcookie("stage", 1, time() - 3600);
 $id = 1;    //$_SESSION['loggedInUser']
 $query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
 $query->bindParam(':id', $id);
@@ -10,7 +10,6 @@ $stage = $query->fetch();
 if ($stage !== true) {
     setcookie("stage", $stage["stage"], time() - 9999, "/");
 }
-setcookie("stage", 1, time() - 9999, "/");
 
 if (isset($_POST['save'])) {
     $stage = $_COOKIE['stage'];
@@ -117,7 +116,7 @@ if (isset($_POST['save'])) {
                 </form>
             </div>
         </div>
-        <div class="settingsBlock" id="settingsBlock">
+        <div class="block" id="settingsBlock">
             <div class="slidecontainer" >
                 <audio loop id="mainMusic"> <source src="Music/mainMusic.mp3" type="audio/mpeg"> </audio>
                 <audio loop id="gameOver"> <source src="Music/gameOver.mp3" type="audio/mpeg"> </audio>
