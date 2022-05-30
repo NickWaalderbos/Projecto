@@ -157,6 +157,7 @@ if (typeof arrCH[0] != "undefined") {
 }
 
 function normalAttack() {
+    normalAttackSound.play();
     random = Math.floor(Math.random() * 20) + 5;
     var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
@@ -165,6 +166,7 @@ function normalAttack() {
 }
 
 function magicAttack() {
+    magicAttackSound.play();
     random = Math.floor(Math.random() * 25) + 10
     var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
@@ -172,12 +174,14 @@ function magicAttack() {
 }
 
 function playerArmor() {
+    armor.play();
     playerarmor *= 0.3;
     enemyTurn()
     playerarmor = arrCH[selectedCH][1];
 }
 
 function playerSpeed() {
+    speed.play();
     playerspeed *= 0.3;
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
