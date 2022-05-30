@@ -270,3 +270,16 @@ progress[value]::-webkit-progress-bar {
     background-color: white;
     border-radius: 15px;
 }
+.settingsBlock {
+    font-family: "Lucida Console", "Courier New", monospace;
+    position: static;
+    margin: 0 auto;
+    clear: left;
+    width: 10%;
+    z-index: -2;
+    opacity: 0;
+    text-align: center;
+    border: solid white;
+    background-color: white;
+    border-radius: 15px;
+}

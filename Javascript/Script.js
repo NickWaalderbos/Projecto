@@ -1,3 +1,16 @@
+var $ = function (elementID) {
+
+    return document.getElementById(elementID);
+
+}
+// Set all music in variable to be called for when needed
+var music = $("mainMusic");
+var normalAttackSound = $("normalAttack");
+var gameOver = $("gameOver");
+var armor = $("armor+");
+var speed = $("speed+");
+var magicAttackSound = $("magicAttack");
+
 //Brings things to the background
 function allToBackground() {
     var messages = document.querySelectorAll(".block");
@@ -31,7 +44,10 @@ function resetHealthPic() {
     document.getElementById("playerHealth").value = arrCH[selectedCH][0];
     document.getElementById("enemyHealth").value = arrEnemy[selectedEnemy][0];
 }
-
+function toSettings() {
+    allToBackground();
+    toForeground("settingsBlock");
+}
 function showStats() {
     nameCharacter = selectedCH.toUpperCase();
     document.getElementById("characterName").innerText = nameCharacter;
@@ -265,3 +281,38 @@ function retry() {
     toArena();
 }
 
+function getCookieValue(name) {
+    return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+}
+//Muziek en volume
+
+
+function volumeslide() {
+    let volumeMuziek = $("MuziekSlider"); // SLIDER VALUE
+    volumeNumber = volumeMuziek.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
+    music.volume = volumeNumber; // VOLUME CHANGE
+    gameOver.volume = volumeNumber; // VOLUME CHANGE
+}
+function effectslide() {
+    let volumeEffect = $("SFXslider"); // SLIDER VALUE
+    volumeNumber = volumeEffect.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
+    armor.volume = volumeNumber; // VOLUME CHANGE
+    speed.volume = volumeNumber; // VOLUME CHANGE
+    normalAttackSound.volume = volumeNumber; // VOLUME CHANGE
+    magicAttackSound.volume = volumeNumber; // VOLUME CHANGE
+}
+/* Dit zijn test functies
+Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
+*/
+function playAudio() {
+    music.play();
+    gameOver.play();
+    normalAttackSound.play();
+    magicAttackSound.play();
+}
+function pauseAudio() {
+    music.pause();
+    gameOver.pause();
+    normalAttackSound.pause();
+    magicAttackSound.pause();
+}
