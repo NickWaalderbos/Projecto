@@ -23,6 +23,15 @@ if (isset($_POST['save'])) {
 }
 ?>
 
+
+
+session_start();
+// Kan niet naar deze pagina zonder succesvolle inlog
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: inlog.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,15 +39,23 @@ if (isset($_POST['save'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
-    <link rel="stylesheet" href="Styles/style.css">
-    <script src="Javascript/script.js" defer></script>
+
+
+    <link rel="stylesheet" href="Styles/gamestyler.css">
+    <script src="Javascript/script.js"></script>
+
 </head>
 <body>
     <div class="background" id="background">
         <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
+
             <button class="button" onclick="toSettings()"><span>Options</span></button>
             <button class="button"><span>Exit game</span></button>
+
+            <button class="button"><span>Options</span></button>
+            <button class="button" onclick="location.href='logout.php';"><span>Exit game</span></button>
+
         </div>
         <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">

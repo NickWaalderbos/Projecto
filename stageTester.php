@@ -5,12 +5,12 @@ session_start();
 $id = 1;
 $hero = "knight";
 $stage = $_COOKIE['stage'];
-setcookie("stage", "", time() - 3600);
+setcookie("stage", "", time() - 3600); // DELETE COOKIE
 echo $stage;
 if ($stage > 1) {
     /*$query = $pdo->prepare("INSERT INTO user_info (id, stage, hero)
             VALUES (:id, :stage, :hero)"); */
-            $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+         $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
         // BIND
         $query->bindParam(':id', $id);
         $query->bindParam(':stage', $stage);
