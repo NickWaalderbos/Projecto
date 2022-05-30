@@ -34,7 +34,9 @@ if (isset($_POST['SEND'])) {
 </head>
 <body>
     <button type="button" onclick="stageUp()">Stage omhoog</button>
+    <form method="POST">
     <button type="submit" name="SEND">Send cookies</button>
+    </form>
     <script src='Javascript/stageTester.js'></script>
 </body>
 </html>
