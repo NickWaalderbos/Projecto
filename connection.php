@@ -13,10 +13,5 @@ $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES => false,
 ];
-try {
-    $pdo = new PDO($dsn, $user, $pass);
-} catch (PDOException $e) {
-    $error_message = $e->getMessage();
-    include('ErrorPages/databaseErrors.php');
-    exit();
-}
+
+$pdo = new PDO($dsn, $user, $pass, $options);

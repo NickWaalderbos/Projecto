@@ -1,12 +1,28 @@
 <?php
-
 session_start();
-// Kan niet naar deze pagina zonder succesvolle inlog
-if (!isset($_SESSION['loggedInUser'])) {
-    header("Location: inlog.php");
-    exit;
+include_once('connection.php');
+//setcookie("stage", "", time() - 3600);
+$id = 1;    //$_SESSION['loggedInUser']
+$query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
+$query->bindParam(':id', $id);
+$query->execute();
+$stage = $query->fetch();
+if ($stage !== true) {
+    setcookie("stage", $stage["stage"], time() - 9999, "/");
+}
+setcookie("stage", 1, time() - 9999, "/");
+
+if (isset($_POST['save'])) {
+    $stage = $_COOKIE['stage'];
+    $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+    // BIND
+    $query->bindParam(':stage', $stage);
+    $query->bindParam(':id', $id);
+    // EXECUTE QUERY
+    $query->execute();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,17 +30,17 @@ if (!isset($_SESSION['loggedInUser'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
-    <link rel="stylesheet" href="Styles/gamestyler.css">
-    <script src="Javascript/script.js"></script>
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="Javascript/script.js" defer></script>
 </head>
 <body>
-    <div class="background">
-        <div class="buttonBlock" id="buttonBlock">
+    <div class="background" id="background">
+        <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
-            <button class="button"><span>Options</span></button>
-            <button class="button" onclick="location.href='logout.php';"><span>Exit game</span></button>
+            <button class="button" onclick="toSettings()"><span>Options</span></button>
+            <button class="button"><span>Exit game</span></button>
         </div>
-        <div class="characterBlock" id="characterBlock">
+        <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">
                 <div class="gameStage">Stage 1: X</div>
                 <div class="gameStage">Stage 2: X</div>
@@ -61,7 +77,7 @@ if (!isset($_SESSION['loggedInUser'])) {
                 </div>
             </div>
         </div>
-        <div class="arenaBlock" id="arenaBlock">
+        <div class="block" id="arenaBlock">
             <div class="characterSlots">
                 <div class="characterSlot">
                     <div class="picture" id="playerPicture"></div>
@@ -81,8 +97,43 @@ if (!isset($_SESSION['loggedInUser'])) {
             <div class="buttonAttackBlock" id="buttonAttackBlock">
                 <button class="button" onclick="normalAttack()"><span>Normal attack</span></button>
                 <button class="button" onclick="magicAttack()"><span>Magic attack</span></button>
-                <button class="button" onclick="armor()"><span>Armor+</span></button>
-                <button class="button" onclick="speed()"><span>Speed+</span></button>
+                <button class="button" onclick="playerArmor()"><span>Armor+</span></button>
+                <button class="button" onclick="playerSpeed()"><span>Speed+</span></button>
+            </div>
+        </div>
+        <div class="block" id="gameOverBlock">
+            <h1>You lost</h1>
+            <div class="gameOverButtons">
+                <button class="button" onclick="retry()"><span>Retry</span></button>
+                <button class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+            </div>
+        </div>
+        <div class="block" id="nextGameBlock">
+            <h1>You won</h1>
+            <div class="nextGameButtons">
+                <form method="POST">
+                    <button type="submit" name="save" class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
+                    <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+                </form>
+            </div>
+        </div>
+        <div class="settingsBlock" id="settingsBlock">
+            <div class="slidecontainer" >
+                <audio loop id="mainMusic"> <source src="Music/mainMusic.mp3" type="audio/mpeg"> </audio>
+                <audio loop id="gameOver"> <source src="Music/gameOver.mp3" type="audio/mpeg"> </audio>
+                <audio id="armor+"> <source src="Music/armor+.mp3" type="audio/mpeg"> </audio>
+                <audio id="magicAttack"> <source src="Music/magicAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="normalAttack"> <source src="Music/normalAttack.mp3" type="audio/mpeg"> </audio>
+                <audio id="speed+"> <source src="Music/speed+.mp3" type="audio/mpeg"> </audio>
+                <!-- Dit called alle muziek -->
+                <h3>Muziek volume</h3>
+                <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
+                <h3>SFX volume</h3>
+                <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
+                <div class="chooseBlock">
+                    <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
+                    <button class="button" onclick="toMainscreen()"><span>Back</span></button>
+                </div>
             </div>
         </div>
     </div>
