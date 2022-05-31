@@ -2,6 +2,10 @@
 
 session_start();
 include_once('connection.php');
+if (!isset($_SESSION['loggedInUser'])) {
+    header("Location: inlog.php");
+    exit;
+}
 //setcookie("stage", "", time() - 3600);
 $id = 1;    //$_SESSION['loggedInUser']
 $query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
@@ -39,7 +43,7 @@ if (isset($_POST['save'])) {
         <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
             <button class="button" onclick="toSettings()"><span>Options</span></button>
-            <button class="button"><span>Exit game</span></button>
+            <button onClick="location.href='logout.php'" class="button" ><span>Exit game</span></button>
         </div>
         <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">

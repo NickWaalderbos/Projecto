@@ -11,7 +11,6 @@ var gameOver = $("gameOver");
 var armor = $("armor+");
 var speed = $("speed+");
 var magicAttackSound = $("magicAttack");
-music.play();
 window.addEventListener('load', (event) => {
     volumecookie = getCookieValue("muziek");
     effectscookie = getCookieValue("effects");
@@ -45,6 +44,7 @@ function toForeground(i) {
 }
 
 function toSelectCharacter() {
+    music.play();
     allToBackground();
     toForeground("characterBlock");
 }
@@ -157,28 +157,36 @@ if (typeof arrCH[0] != "undefined") {
 }
 
 function normalAttack() {
+    normalAttackSound.play();
     random = Math.floor(Math.random() * 20) + 5;
     var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
     document.getElementById("enemyHealth").value = playerAttack(damage);
+    sleep(1100);
     enemyTurn()
 }
 
 function magicAttack() {
+    magicAttackSound.play();
     random = Math.floor(Math.random() * 25) + 10
     var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
+    sleep(1100);
     enemyTurn()
 }
 
 function playerArmor() {
+    armor.play();
     playerarmor *= 0.3;
+    sleep(2800);
     enemyTurn()
     playerarmor = arrCH[selectedCH][1];
 }
 
 function playerSpeed() {
+    speed.play();
     playerspeed *= 0.3;
+    sleep(1100);
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
 }
