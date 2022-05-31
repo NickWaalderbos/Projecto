@@ -113,12 +113,11 @@ arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 
 //Global enemy
 if (getCookieValue("stage") < 1) {
+    document.cookie = "stage=1;domain=localhost";
     var selectedEnemy = "enemy1";
 } else {
     var selectedEnemy = "enemy" + getCookieValue("stage");
 }
-
-console.log(getCookieValue("stage"));
 
 function selectHero(nameCharacter) {
     document.cookie = "CH=" + nameCharacter + "; " + "domain=localhost";
