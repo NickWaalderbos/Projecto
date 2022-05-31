@@ -112,12 +112,20 @@ arrEnemy["enemy4"] = [80, 70, 50, 20, 30];
 arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 
 //Global enemy
-if (getCookieValue("stage") < 1) {
-    document.cookie = "stage=1;domain=localhost";
-    var selectedEnemy = "enemy1";
-} else {
-    var selectedEnemy = "enemy" + getCookieValue("stage");
+function globalEnemy() {
+    if (getCookieValue("stage") < 1) {
+        document.cookie = "stage=1;domain=localhost";
+        selectedEnemy = "enemy1";
+    } else if (getCookieValue("stage") > 5) {
+        document.cookie = "stage=5;domain=localhost";
+        selectedEnemy = "enemy5";
+    } else {
+        selectedEnemy = "enemy" + getCookieValue("stage");
+    }
 }
+
+var selectedEnemy = "";
+globalEnemy();
 
 function selectHero(nameCharacter) {
     document.cookie = "CH=" + nameCharacter + "; " + "domain=localhost";
