@@ -1,7 +1,5 @@
 var $ = function (elementID) {
-
     return document.getElementById(elementID);
-
 }
 
 // Set all music in variable to be called for when needed
@@ -114,8 +112,12 @@ arrEnemy["enemy4"] = [80, 70, 50, 20, 30];
 arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
 
 //Global enemy
-var selectedEnemy = "enemy" + getCookieValue("stage");
-console.log(getCookieValue("stage"));
+if (getCookieValue("stage") < 1) {
+    document.cookie = "stage=1;domain=localhost";
+    var selectedEnemy = "enemy1";
+} else {
+    var selectedEnemy = "enemy" + getCookieValue("stage");
+}
 
 function selectHero(nameCharacter) {
     document.cookie = "CH=" + nameCharacter + "; " + "domain=localhost";
@@ -278,7 +280,7 @@ function ArmorEnemy() {
 function SpeedEnemy() {
     enemySpeed *= 0.3;
 }
-enemySpeed
+
 function enemyAttack(damage) {
     value = document.getElementById("playerHealth").value;
     if (chanceToDodge(arrCH[selectedCH][3]) == false) {
@@ -307,8 +309,8 @@ function retry() {
 function getCookieValue(name) {
     return document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
 }
-//Muziek en volume
 
+//Muziek en volume
 
 function volumeslide() {
     let volumeMuziek = $("MuziekSlider"); // SLIDER VALUE

@@ -6,7 +6,6 @@ if (!isset($_SESSION['loggedInUser'])) {
     header("Location: inlog.php");
     exit;
 }
-
 $id = $_SESSION['loggedInUser'];
 $query = $pdo->prepare("SELECT COUNT(*) AS `total` FROM user_info WHERE id = :id");
 $query->bindParam(':id', $id);
