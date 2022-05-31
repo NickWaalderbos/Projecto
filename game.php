@@ -47,6 +47,7 @@ if (isset($_POST['save'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="Styles/gamestyler.css">
+    <link rel="stylesheet" href="Styles/firework.css">
     <script src="Javascript/script.js" defer></script>
 </head>
 <body>

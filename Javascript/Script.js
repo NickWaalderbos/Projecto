@@ -153,11 +153,13 @@ function setStats() {
     document.getElementById("playerHealth").max = arrCH[selectedCH][0];
 }
 function toArena() {
-    allToBackground();
-    toForeground("arenaBlock");
-    boxShadow(null);
-    getImgs();
-    setStats();
+    if (typeof nameCharacter !== "undefined") {
+        allToBackground();
+        toForeground("arenaBlock");
+        boxShadow(null);
+        getImgs();
+        setStats();
+    }
 }
 //Attacks and Buffs for player
 
