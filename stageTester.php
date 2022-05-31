@@ -5,12 +5,12 @@ session_start();
 $id = 1;
 $hero = "knight";
 $stage = $_COOKIE['stage'];
-setcookie("stage", "", time() - 3600); // DELETE COOKIE
+setcookie("stage", "", time() - 3600);
 echo $stage;
 if ($stage > 1) {
     /*$query = $pdo->prepare("INSERT INTO user_info (id, stage, hero)
             VALUES (:id, :stage, :hero)"); */
-         $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+            $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
         // BIND
         $query->bindParam(':id', $id);
         $query->bindParam(':stage', $stage);
@@ -34,7 +34,9 @@ if (isset($_POST['SEND'])) {
 </head>
 <body>
     <button type="button" onclick="stageUp()">Stage omhoog</button>
+    <form method="POST">
     <button type="submit" name="SEND">Send cookies</button>
+    </form>
     <script src='Javascript/stageTester.js'></script>
 </body>
 </html>

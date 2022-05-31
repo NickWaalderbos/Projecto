@@ -1,8 +1,9 @@
 <?php
 
 session_start();
-unset($_SESSION['loggedInUser']); 
-header('Refresh: 6; URL=inlog.php');
+unset($_SESSION['loggedInUser']);  
+setcookie("stage", "", time() - 3600); 
+header('Refresh: 5; URL=inlog.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
