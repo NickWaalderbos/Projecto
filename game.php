@@ -6,16 +6,28 @@ if (!isset($_SESSION['loggedInUser'])) {
     header("Location: inlog.php");
     exit;
 }
-//setcookie("stage", "", time() - 3600);
-$id = 1;    //$_SESSION['loggedInUser']
-$query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
+
+$id = $_SESSION['loggedInUser'];
+$query = $pdo->prepare("SELECT COUNT(*) AS `total` FROM user_info WHERE id = :id");
 $query->bindParam(':id', $id);
 $query->execute();
-$stage = $query->fetch();
-if ($stage !== true) {
-    setcookie("stage", $stage["stage"], time() - 9999, "/");
+$stage = $query->fetchObject();
+
+if ($stage->total < 1) { // checked als er wel een kolum is
+        $query = $pdo->prepare("INSERT INTO user_info (id, stage)
+        VALUES (:id, 1)");
+        $query->bindParam(':id', $id);
+        $query->execute();
+        setcookie("stage", 1, 2147483647);
+} else {
+    $query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
+    $query->bindParam(':id', $id);
+    $query->execute();
+    $stageCheck = $query->fetch();
+    if ($stageCheck !== true) {
+        setcookie("stage", $stageCheck["stage"], 2147483647);
+    }
 }
-setcookie("stage", 1, time() - 9999, "/");
 
 if (isset($_POST['save'])) {
     $stage = $_COOKIE['stage'];

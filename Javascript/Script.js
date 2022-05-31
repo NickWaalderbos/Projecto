@@ -97,7 +97,7 @@ function showGameStage() {
 
 //Character stats
 const arrCH = new Object();
-arrCH["knight"] = [60, 55, 40, 45, 50];
+arrCH["knight"] = [60, 55, 40, 45, 50]; // Health, armor, strength, speed , intellegence
 arrCH["berserker"] = [70, 30, 65, 60, 25];
 arrCH["mage"] = [55, 30, 40, 45, 80];
 arrCH["paladin"] = [80, 70, 50, 20, 30];
@@ -162,7 +162,6 @@ function normalAttack() {
     var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
     document.getElementById("enemyHealth").value = playerAttack(damage);
-    sleep(1100);
     enemyTurn()
 }
 
@@ -171,14 +170,12 @@ function magicAttack() {
     random = Math.floor(Math.random() * 25) + 10
     var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
-    sleep(1100);
     enemyTurn()
 }
 
 function playerArmor() {
     armor.play();
     playerarmor *= 0.3;
-    sleep(2800);
     enemyTurn()
     playerarmor = arrCH[selectedCH][1];
 }
@@ -186,7 +183,6 @@ function playerArmor() {
 function playerSpeed() {
     speed.play();
     playerspeed *= 0.3;
-    sleep(1100);
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
 }
