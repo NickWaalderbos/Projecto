@@ -277,7 +277,7 @@ function ArmorEnemy() {
 function SpeedEnemy() {
     enemySpeed *= 0.3;
 }
-enemySpeed
+
 function enemyAttack(damage) {
     value = document.getElementById("playerHealth").value;
     if (chanceToDodge(arrCH[selectedCH][3]) == false) {
