@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include_once('connection.php');
 //setcookie("stage", 1, time() - 3600);
@@ -29,7 +30,7 @@ if (isset($_POST['save'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
-    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/gamestyler.css">
     <script src="Javascript/script.js" defer></script>
 </head>
 <body>
