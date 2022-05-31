@@ -9,7 +9,6 @@ var gameOver = $("gameOver");
 var armor = $("armor+");
 var speed = $("speed+");
 var magicAttackSound = $("magicAttack");
-music.play();
 window.addEventListener('load', (event) => {
     volumecookie = getCookieValue("muziek");
     effectscookie = getCookieValue("effects");
@@ -43,6 +42,7 @@ function toForeground(i) {
 }
 
 function toSelectCharacter() {
+    music.play();
     allToBackground();
     toForeground("characterBlock");
 }
@@ -95,7 +95,7 @@ function showGameStage() {
 
 //Character stats
 const arrCH = new Object();
-arrCH["knight"] = [60, 55, 40, 45, 50];
+arrCH["knight"] = [60, 55, 40, 45, 50]; // Health, armor, strength, speed , intellegence
 arrCH["berserker"] = [70, 30, 65, 60, 25];
 arrCH["mage"] = [55, 30, 40, 45, 80];
 arrCH["paladin"] = [80, 70, 50, 20, 30];
@@ -159,6 +159,7 @@ if (typeof arrCH[0] != "undefined") {
 }
 
 function normalAttack() {
+    normalAttackSound.play();
     random = Math.floor(Math.random() * 20) + 5;
     var damage = random * (arrCH[selectedCH][2] / 100);
     damage = damage * (arrEnemy[selectedEnemy][1] / 50);
@@ -167,6 +168,7 @@ function normalAttack() {
 }
 
 function magicAttack() {
+    magicAttackSound.play();
     random = Math.floor(Math.random() * 25) + 10
     var magicdamage = random * (arrCH[selectedCH][4] / 100);
     document.getElementById("enemyHealth").value = playerAttack(magicdamage);
@@ -174,12 +176,14 @@ function magicAttack() {
 }
 
 function playerArmor() {
+    armor.play();
     playerarmor *= 0.3;
     enemyTurn()
     playerarmor = arrCH[selectedCH][1];
 }
 
 function playerSpeed() {
+    speed.play();
     playerspeed *= 0.3;
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];

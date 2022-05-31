@@ -2,6 +2,8 @@
 
 include_once('connection.php');
 
+
+
 session_start();
 
 if (isset($_POST['register'])) {
@@ -61,3 +63,6 @@ if (isset($_POST['login'])) {
 <script src='Javascript/InlogErrors.js'></script>
 </body>
 </html>
+<?php
+include_once('Footers/mainFooter.html');
+?>
