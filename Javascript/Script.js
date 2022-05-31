@@ -95,21 +95,21 @@ function showGameStage() {
 
 //Character stats
 const arrCH = new Object();
-arrCH["knight"] = [60, 55, 40, 45, 50]; // Health, armor, strength, speed , intellegence
-arrCH["berserker"] = [70, 30, 65, 60, 25];
-arrCH["mage"] = [55, 30, 40, 45, 80];
-arrCH["paladin"] = [80, 70, 50, 20, 30];
+arrCH["knight"] = [65, 60, 40, 45, 35]; // Health, armor, strength, speed , intellegence
+arrCH["berserker"] = [75, 25, 70, 60, 25];
+arrCH["mage"] = [50, 30, 40, 35, 80];
+arrCH["paladin"] = [90, 90, 45, 20, 10];
 
 //Global selected character
 var selectedCH;
 
 //Enemy stats
 const arrEnemy = new Object();
-arrEnemy["enemy1"] = [70, 30, 65, 60, 25];
-arrEnemy["enemy2"] = [70, 30, 65, 40, 65];
-arrEnemy["enemy3"] = [55, 30, 40, 70, 50];
+arrEnemy["enemy1"] = [70, 30, 65, 60, 25]; // Health, armor, strength, speed , intellegence
+arrEnemy["enemy2"] = [70, 30, 65, 35, 65];
+arrEnemy["enemy3"] = [55, 20, 40, 45, 50];
 arrEnemy["enemy4"] = [80, 70, 50, 20, 30];
-arrEnemy["enemy5"] = [80, 70, 50, 20, 30];
+arrEnemy["enemy5"] = [100, 70, 95, 25, 35];
 
 //Global enemy
 function globalEnemy() {

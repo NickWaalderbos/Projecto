@@ -147,7 +147,7 @@ if (isset($_POST['save'])) {
                 <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
                 <h3>SFX volume</h3>
                 <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
-                <div class="chooseBlock">
+                <div class="chooseBlockSettings">
                     <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
                     <button class="button" onclick="toMainscreen()"><span>Back</span></button>
                 </div>
