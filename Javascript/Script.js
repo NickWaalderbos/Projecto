@@ -56,10 +56,12 @@ function toMainscreen() {
 }
 
 function resetHealthPic() {
-    document.getElementById("playerPicture").firstChild.remove();
-    document.getElementById("enemyPicture").firstChild.remove();
-    document.getElementById("playerHealth").value = arrCH[selectedCH][0];
-    document.getElementById("enemyHealth").value = arrEnemy[selectedEnemy][0];
+    if (typeof document.getElementById("playerPicture").firstChild != "undefined") {
+        document.getElementById("playerPicture").firstChild.remove();
+        document.getElementById("enemyPicture").firstChild.remove();
+        document.getElementById("playerHealth").value = arrCH[selectedCH][0];
+        document.getElementById("enemyHealth").value = arrEnemy[selectedEnemy][0];
+    }
 }
 function toSettings() {
     allToBackground();
@@ -212,6 +214,23 @@ function playerAttack(damage) {
     }
 }
 
+/* function myMove() {
+    let id = null;
+    const elem = document.getElementById("playerPicture");
+    let pos = 0;
+    clearInterval(id);
+    id = setInterval(frame, 5);
+    function frame() {
+        if (pos == 350) {
+            clearInterval(id);
+        } else {
+            pos++;
+            elem.style.top = pos + "px";
+            elem.style.left = pos + "px";
+        }
+    }
+}*/
+
 //Global function dodge
 
 function chanceToDodge(selected) {
@@ -225,17 +244,18 @@ function chanceToDodge(selected) {
 //next stage to database
 
 function enemyKilled() {
+    allToBackground();
     stage = getCookieValue("stage");
     if (stage < 1) {
         stage = 1;
-    } else if (stage > 5) {
+    } else if (stage >= 5) {
         stage = 5;
+        toForeground("endGameBlock");
     } else {
         stage++;
+        toForeground("nextGameBlock");
     }
     document.cookie = "stage=" + stage + "; " + "domain=localhost";
-    allToBackground();
-    toForeground("nextGameBlock");
 }
 
 //get value of the cookie
@@ -246,19 +266,30 @@ function getCookieValue(name) {
 
 //Attacks and Buffs for enemy
 
+function allButtons(disable) {
+    var messages = document.querySelectorAll("#button");
+    for (var i = 0; i < messages.length; i++) {
+        messages[i].disabled = disable;
+    };
+}
+
 function enemyTurn() {
-    arrEnemy[selectedEnemy][1];
-    arrEnemy[selectedEnemy][4];
-    random = Math.floor(Math.random() * 3);
-    if (random = 0) {
-        normalAttackEnemy()
-    } else if (random = 1) {
-        magicAttackEnemy()
-    } else if (random = 2) {
-        ArmorEnemy()
-    } else if (random = 3) {
-        SpeedEnemy()
-    }
+    setTimeout(() => {
+        allButtons(true);
+        arrEnemy[selectedEnemy][1];
+        arrEnemy[selectedEnemy][4];
+        random = Math.floor(Math.random() * 3);
+        if (random = 0) {
+            normalAttackEnemy()
+        } else if (random = 1) {
+            magicAttackEnemy()
+        } else if (random = 2) {
+            ArmorEnemy()
+        } else if (random = 3) {
+            SpeedEnemy()
+        }
+    }, 2000);
+    allButtons(false);
 }
 
 //Attacks and Buffs for the enemy
@@ -350,4 +381,12 @@ function pauseAudio() {
     gameOver.pause();
     normalAttackSound.pause();
     magicAttackSound.pause();
+}
+
+//Deset stages
+
+function reset() {
+    console.log("kan");
+    document.cookie = "stage=1;domain=localhost";
+    toMainscreen();
 }
