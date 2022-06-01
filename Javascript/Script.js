@@ -1,6 +1,7 @@
 var $ = function (elementID) {
     return document.getElementById(elementID);
 }
+var arenacheck = 0;
 var enemykilled = false;
 // Set all music in variable to be called for when needed
 var music = $("mainMusic");
@@ -42,6 +43,7 @@ function toForeground(i) {
 }
 
 function toSelectCharacter() {
+    arenacheck = 0;
     music.play();
     allToBackground();
     toForeground("characterBlock");
@@ -154,11 +156,14 @@ function setStats() {
 }
 function toArena() {
     if (typeof nameCharacter !== "undefined") {
+        if (arenacheck == 0) {
+            arenacheck = 1;
         allToBackground();
         toForeground("arenaBlock");
         boxShadow(null);
         getImgs();
         setStats();
+        }
     }
 }
 //Attacks and Buffs for player
@@ -197,6 +202,7 @@ function playerSpeed() {
     playerspeed *= 0.3;
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
+    console.log(document.getElementById("playerHealth").value);
 }
 
 function playerAttack(damage) {
