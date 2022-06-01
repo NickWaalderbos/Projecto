@@ -3,7 +3,7 @@
 session_start();
 unset($_SESSION['loggedInUser']);  
 setcookie("stage", "", time() - 3600); 
-header('Refresh: 5; URL=inlog.php');
+header('Refresh: 5; URL=index.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

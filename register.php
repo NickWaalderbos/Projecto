@@ -5,7 +5,7 @@ include_once('connection.php');
 session_start();
 
 if (isset($_POST['Back'])) {
-    header("Location: inlog.php");
+    header("Location: index.php");
 }
 if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password2']) && isset($_POST['E-mail'])) {
     // SET VARIABLES
@@ -33,7 +33,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
             $query->bindParam(':email', $email);
         // EXECUTE QUERY
             $query->execute();
-            header("Location: inlog.php");
+            header("Location: index.php");
         }
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
@@ -41,7 +41,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['pass
             echo "<div class='errorbox'><h1>E-mail al in gebruik</h1>";
             echo "<br>";
             echo "<h1>Je word terug gestuurd naar het login scherm</h1></div>";
-            header('Refresh: 4; URL=inlog.php');
+            header('Refresh: 4; URL=index.php');
         } else if (strpos($error_message, "username") !== false) {
             echo "<div class='errorbox'><h1>Username al in gebruik</h1>";
             echo "<br>";
