@@ -23,11 +23,11 @@ $query->execute();
 $stage = $query->fetchObject();
 
 if ($stage->total < 1) { // checked als er wel een kolum is
-        $query = $pdo->prepare("INSERT INTO user_info (id, stage)
-        VALUES (:id, 1)");
-        $query->bindParam(':id', $id);
-        $query->execute();
-        setcookie("stage", 1, 2147483647);
+    $query = $pdo->prepare("INSERT INTO user_info (id, stage)
+    VALUES (:id, 1)");
+    $query->bindParam(':id', $id);
+    $query->execute();
+    setcookie("stage", 1, 2147483647);
 } else {
     $query = $pdo->prepare("SELECT * FROM user_info WHERE id = :id");
     $query->bindParam(':id', $id);
@@ -133,6 +133,15 @@ if ($stage->total < 1) { // checked als er wel een kolum is
             <div class="nextGameButtons">
                 <form method="POST">
                     <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Next Fight</span></button>
+                    <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
+                </form>
+            </div>
+        </div>
+        <div class="block" id="endGameBlock">
+            <h1>You won the game</h1>
+            <div class="resetGameButtons">
+                <form method="POST">
+                    <button type="submit" name="reset" class="button" ><span>reset all</span></button>
                     <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
                 </form>
             </div>

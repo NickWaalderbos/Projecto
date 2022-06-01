@@ -295,3 +295,17 @@ progress[value]::-webkit-progress-bar {
     text-align: center;
     background: #a0a0a0be;
 }
+
+#endGameBlock {
+    font-family: "Lucida Console", "Courier New", monospace;
+    position: static;
+    margin-top: -50%;
+    margin: auto;
+    width: 20%;
+    z-index: -2;
+    opacity: 0;
+    text-align: center;
+    border: solid white;
+    background-color: white;
+    border-radius: 15px;
+}
