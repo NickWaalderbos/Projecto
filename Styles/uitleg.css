@@ -1,0 +1,17 @@
+body {
+    background-color: #231f55;
+    background-image: url("../Images/Background.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.uitleg {
+    text-align: center;
+    color: #eed0d0e9;
+}
+
+.champs {
+    display: flex;
+    flex-direction: row;
+    margin: 60px;
+}

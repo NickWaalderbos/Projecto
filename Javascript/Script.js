@@ -1,7 +1,7 @@
 var $ = function (elementID) {
     return document.getElementById(elementID);
 }
-
+var enemykilled = false;
 // Set all music in variable to be called for when needed
 var music = $("mainMusic");
 var normalAttackSound = $("normalAttack");
@@ -209,6 +209,7 @@ function playerAttack(damage) {
             return total;
         } else {
             enemyKilled();
+            enemykilled = true;
             return 1;
         }
     }
@@ -300,7 +301,10 @@ function enemyAttack(damage) {
         if (total > 1) {
             return total;
         } else {
-            playerKilled();
+            if (!enemykilled) {
+                playerKilled();
+                enemykilled = true;
+            }
             return 1;
         }
     }
@@ -327,7 +331,7 @@ function volumeslide() {
     volumeNumber = volumeMuziek.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
     music.volume = volumeNumber; // VOLUME CHANGE
     gameOver.volume = volumeNumber; // VOLUME CHANGE
-    document.cookie = "muziek=" + volumeNumber + "; " + "domain=localhost";
+    //document.cookie = "muziek=" + volumeNumber + "; " + "domain=localhost";
 }
 function effectslide() {
     let volumeEffect = $("SFXslider"); // SLIDER VALUE
@@ -336,7 +340,7 @@ function effectslide() {
     speed.volume = volumeNumber; // VOLUME CHANGE
     normalAttackSound.volume = volumeNumber; // VOLUME CHANGE
     magicAttackSound.volume = volumeNumber; // VOLUME CHANGE
-    document.cookie = "effects=" + volumeNumber + "; " + "domain=localhost";
+    //document.cookie = "effects=" + volumeNumber + "; " + "domain=localhost";
 }
 /* Dit zijn test functies
 Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
