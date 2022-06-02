@@ -281,7 +281,7 @@ progress[value]::-webkit-progress-bar {
     right: 45%;
     left: 45%;
     clear: left;
-    width: 10%;
+    width: 11%;
     z-index: -2;
     opacity: 0;
     text-align: center;
@@ -290,6 +290,9 @@ progress[value]::-webkit-progress-bar {
     border-radius: 15px;
 }
 
+#settingsBlock button {
+    max-width: 100%;
+}
 .footer {
     position: absolute;
     bottom: 0;

@@ -25,4 +25,3 @@ Magic attack ,hiermee val je de tegenstander met een magische attack aan.
 Speed+, hiermee verhoog je jouw snelheid en krijg je een hogere kans om de tegenstander te ontwijken.
 
 Armor+, je armor gaat omhoog en krijg je minder schade van de tegenstander die ronde.
-

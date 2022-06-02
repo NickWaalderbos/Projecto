@@ -5,7 +5,7 @@ include_once('connection.php');
 session_start();
 // Kan niet naar deze pagina zonder succesvolle inlog
 if (!isset($_SESSION['loggedInUser'])) {
-    header("Location: inlog.php");
+    header("Location: index.php");
     exit;
 }
 // FUNCTIONS
@@ -113,7 +113,7 @@ try {
         echo "<div class='errorbox'><h1>E-mail al in gebruik</h1>";
         echo "<br>";
         echo "<h1>Je word terug gestuurd naar het login scherm</h1></div>";
-        header('Refresh: 4; URL=inlog.php');
+        header('Refresh: 4; URL=index.php');
     } else if (strpos($error_message, "username") !== false) {
         // USERNAME ERROR CATCH
         echo "<div class='errorbox'><h1>Username al in gebruik</h1>";

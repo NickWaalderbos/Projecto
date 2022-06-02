@@ -3,10 +3,20 @@
 session_start();
 include_once('connection.php');
 if (!isset($_SESSION['loggedInUser'])) {
-    header("Location: inlog.php");
+    header("Location: index.php");
     exit;
 }
 $id = $_SESSION['loggedInUser'];
+if (isset($_POST['save'])) {
+    $stage = $_COOKIE['stage'];
+    $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
+    // BIND
+    $query->bindParam(':stage', $stage);
+    $query->bindParam(':id', $id);
+    // EXECUTE QUERY
+    $query->execute();
+}
+
 $query = $pdo->prepare("SELECT COUNT(*) AS `total` FROM user_info WHERE id = :id");
 $query->bindParam(':id', $id);
 $query->execute();
@@ -28,15 +38,7 @@ if ($stage->total < 1) { // checked als er wel een kolum is
     }
 }
 
-if (isset($_POST['save'])) {
-    $stage = $_COOKIE['stage'];
-    $query = $pdo->prepare("UPDATE user_info SET stage = :stage WHERE id = :id");
-    // BIND
-    $query->bindParam(':stage', $stage);
-    $query->bindParam(':id', $id);
-    // EXECUTE QUERY
-    $query->execute();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -47,6 +49,7 @@ if (isset($_POST['save'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project</title>
     <link rel="stylesheet" href="Styles/gamestyler.css">
+    <link rel="stylesheet" href="Styles/firework.css">
     <script src="Javascript/script.js" defer></script>
 </head>
 <body>
@@ -54,6 +57,7 @@ if (isset($_POST['save'])) {
         <div class="block" id="buttonBlock">
             <button class="button" onclick="toSelectCharacter()"><span>Play</span></button>
             <button class="button" onclick="toSettings()"><span>Options</span></button>
+            <button onClick="window.open('gameuitleg.php')" class="button" ><span>Tutorial</span></button>
             <button onClick="location.href='logout.php'" class="button" ><span>Exit game</span></button>
         </div>
         <div class="block" id="characterBlock">
@@ -128,7 +132,7 @@ if (isset($_POST['save'])) {
             <h1>You won</h1>
             <div class="nextGameButtons">
                 <form method="POST">
-                    <button type="submit" name="save" class="button" onclick="toNextenemy()"><span>Next Fight</span></button>
+                    <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Next Fight</span></button>
                     <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
                 </form>
             </div>
@@ -155,7 +159,7 @@ if (isset($_POST['save'])) {
                 <input id="MuziekSlider" onclick="volumeslide()" type="range" min="0" max="100" value="100">
                 <h3>SFX volume</h3>
                 <input id="SFXslider" onclick="effectslide()" type="range" min="0" max="100" value="100">
-                <div class="chooseBlock">
+                <div class="chooseBlockSettings">
                     <button class="button" onClick="location.href='usersettings.php'"><span>Advanced</span></button>
                     <button class="button" onclick="toMainscreen()"><span>Back</span></button>
                 </div>
