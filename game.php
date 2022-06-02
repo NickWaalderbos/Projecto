@@ -145,6 +145,9 @@ if ($stage->total < 1) { // checked als er wel een kolum is
             </div>
         </div>
         <div class="block" id="endGameBlock">
+        <?php
+            include_once('Effects/firework.html');
+        ?>
             <h1>You won the game</h1>
             <div class="resetGameButtons">
                 <form method="POST">

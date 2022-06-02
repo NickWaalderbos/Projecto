@@ -1,5 +1,7 @@
 .pyro>.before,
 .pyro>.after {
+    left: 2%;
+        top: 11%;
     position: absolute;
     width: 5px;
     height: 5px;
@@ -11,7 +13,6 @@
     -ms-animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
     animation: 1s bang ease-out infinite backwards, 1s gravity ease-in infinite backwards, 5s position linear infinite backwards;
 }
-
 .pyro>.after {
     -moz-animation-delay: 1.25s, 1.25s, 1.25s;
     -webkit-animation-delay: 1.25s, 1.25s, 1.25s;

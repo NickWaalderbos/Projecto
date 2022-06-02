@@ -348,11 +348,16 @@ function enemyAttack(damage) {
 }
 
 function playerKilled() {
+    music.pause();
+    gameOver.play();
     allToBackground();
     toForeground("gameOverBlock");
+
 }
 
 function retry() {
+    gameOver.pause();
+    music.play();
     resetHealthPic()
     toArena();
 }
@@ -398,7 +403,6 @@ function pauseAudio() {
 //Deset stages
 
 function reset() {
-    console.log("kan");
     document.cookie = "stage=1;domain=localhost";
     toMainscreen();
 }
