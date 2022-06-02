@@ -16,6 +16,13 @@ if (isset($_POST['save'])) {
     // EXECUTE QUERY
     $query->execute();
 }
+if (isset($_POST['reset'])) {
+    $query = $pdo->prepare("UPDATE user_info SET stage = 1 WHERE id = :id");
+    // BIND
+    $query->bindParam(':id', $id);
+    // EXECUTE QUERY
+    $query->execute();
+}
 
 $query = $pdo->prepare("SELECT COUNT(*) AS `total` FROM user_info WHERE id = :id");
 $query->bindParam(':id', $id);
