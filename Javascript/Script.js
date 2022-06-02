@@ -32,7 +32,7 @@ window.addEventListener('load', (event) => {
 function allToBackground() {
     var messages = document.querySelectorAll(".block");
     for (var i = 0; i < messages.length; i++) {
-        messages[i].style.opacity = "0";
+        messages[i].style.opacity = "-1";
         messages[i].style.zIndex = "-1"
     };
 }
