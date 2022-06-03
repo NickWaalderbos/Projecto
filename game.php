@@ -38,7 +38,6 @@ if ($stage->total < 1) { // checked als er wel een kolum is
     }
 }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -62,11 +61,16 @@ if ($stage->total < 1) { // checked als er wel een kolum is
         </div>
         <div class="block" id="characterBlock">
             <div class="gameStageBlock" id="gameStageBlock">
-                <div class="gameStage">Stage 1: X</div>
-                <div class="gameStage">Stage 2: X</div>
-                <div class="gameStage">Stage 3: X</div>
-                <div class="gameStage">Stage 4: X</div>
-                <div class="gameStage">Stage 5: X</div>
+                <div class="loadbar">
+                    <strong class="bar" id="bar"></strong>
+                </div>
+                <div class="stages">
+                    <a>---Stage 1</a>
+                    <a>---Stage 2</a>
+                    <a>---Stage 3</a>
+                    <a>---Stage 4</a>
+                    <a>---Stage 5</a>
+                </div>
             </div>
             <div class="characterSelect" id="characterSelect">
                 <button class="character" id="knight" onclick="selectHero('knight')"><img src="Images/Knight.png" alt="KnightCH"></button>

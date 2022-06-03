@@ -47,6 +47,12 @@ function toSelectCharacter() {
     music.play();
     allToBackground();
     toForeground("characterBlock");
+    setStage();
+}
+
+function setStage() {
+    stage = getCookieValue("stage");
+    document.getElementById("bar").style.height = ((stage - 1) * 25) + "%";
 }
 
 function toMainscreen() {
@@ -58,7 +64,7 @@ function toMainscreen() {
 }
 
 function resetHealthPic() {
-    if (typeof document.getElementById("playerPicture").firstChild != "undefined") {
+    if (typeof document.getElementById("playerPicture").firstChild == "undefined") {
         document.getElementById("playerPicture").firstChild.remove();
         document.getElementById("enemyPicture").firstChild.remove();
         document.getElementById("playerHealth").value = arrCH[selectedCH][0];
