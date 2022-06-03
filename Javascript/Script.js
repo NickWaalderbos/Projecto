@@ -7,16 +7,16 @@ var enemykilled = false;
 var music = $("mainMusic");
 var normalAttackSound = $("normalAttack");
 var gameOver = $("gameOver");
-var armor = $("armor+");
-var speed = $("speed+");
+var armorvolume = $("armor+");
+var speedvolume = $("speed+");
 var magicAttackSound = $("magicAttack");
 window.addEventListener('load', (event) => {
     volumecookie = getCookieValue("muziek");
     effectscookie = getCookieValue("effects");
     // Checks if cookies are set then executes volume
     if (effectscookie) {
-        armor.volume = effectscookie; // Effects
-        speed.volume = effectscookie;
+        armorvolume.volume = effectscookie; // Effects
+        speedvolume.volume = effectscookie;
         normalAttackSound.volume = effectscookie;
         magicAttackSound.volume = effectscookie;
         $("SFXslider").value = effectscookie * 100;
@@ -193,14 +193,14 @@ function magicAttack() {
 }
 
 function playerArmor() {
-    armor.play();
+    armorvolume.play();
     playerarmor *= 0.3;
     enemyTurn()
     playerarmor = arrCH[selectedCH][1];
 }
 
 function playerSpeed() {
-    speed.play();
+    speedvolume.play();
     playerspeed *= 0.3;
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
@@ -373,7 +373,7 @@ function volumeslide() {
     volumeNumber = volumeMuziek.value / 100; // DELEN DOOR 100 WANT HIJ PAKT VALUES ONDER 1
     music.volume = volumeNumber; // VOLUME CHANGE
     gameOver.volume = volumeNumber; // VOLUME CHANGE
-    //document.cookie = "muziek=" + volumeNumber + "; " + "domain=localhost";
+    document.cookie = "muziek=" + volumeNumber + "; " + "domain=localhost";
 }
 function effectslide() {
     let volumeEffect = $("SFXslider"); // SLIDER VALUE
@@ -382,22 +382,7 @@ function effectslide() {
     speed.volume = volumeNumber; // VOLUME CHANGE
     normalAttackSound.volume = volumeNumber; // VOLUME CHANGE
     magicAttackSound.volume = volumeNumber; // VOLUME CHANGE
-    //document.cookie = "effects=" + volumeNumber + "; " + "domain=localhost";
-}
-/* Dit zijn test functies
-Je wilt natuurlijk niet dat SFX word afgespeeld op de main menu ;)
-*/
-function playAudio() {
-    music.play();
-    //gameOver.play();
-    //normalAttackSound.play();
-    //magicAttackSound.play();
-}
-function pauseAudio() {
-    music.pause();
-    gameOver.pause();
-    normalAttackSound.pause();
-    magicAttackSound.pause();
+    document.cookie = "effects=" + volumeNumber + "; " + "domain=localhost";
 }
 
 //Deset stages

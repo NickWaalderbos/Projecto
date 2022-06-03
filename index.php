@@ -11,22 +11,29 @@ if (isset($_POST['register'])) {
 }
 if (isset($_POST['login'])) {
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password']; 
-        $query = $pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
-        $query->bindParam(':username', $username);
-        $query->bindParam(':password', $password);
-    //
-        $query->execute();
-        $user = $query->fetch();
-    //
-        if ($user !== false) {
-            $_SESSION['loggedInUser'] = $user['id'];
-            header("Location: game.php");
-            die();
+        try {
+            $username = $_POST['username'];
+            $password = $_POST['password']; 
+            $query = $pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+            $query->bindParam(':username', $username);
+            $query->bindParam(':password', $password);
+        //
+            $query->execute();
+            $user = $query->fetch();
+        //
+            if ($user !== false) {
+                $_SESSION['loggedInUser'] = $user['id'];
+                header("Location: game.php");
+                die();
+            }
+        //
+            setcookie("error", "Gebruikersnaam of wachtwoord is ongeldig.");
+        } catch (PDOException $e) {
+            echo "<h1>Neem contact op met de berheerder en geef hem dit door</h1>";
+            echo "<h1>Error message: <?php echo $error_message; ?></h1>";
+            include('ErrorPages/duplicateErrors.php');
+            exit();
         }
-    //
-        setcookie("error", "Gebruikersnaam of wachtwoord is ongeldig.");
     }
 }
 ?>
