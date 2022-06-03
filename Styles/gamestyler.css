@@ -259,7 +259,9 @@ progress[value]::-webkit-progress-bar {
     background-color: white;
     border-radius: 15px;
 }
-
+.disabledhoopik {
+    display: auto;
+}
 #gameOverBlock {
     font-family: "Lucida Console", "Courier New", monospace;
     position: static;

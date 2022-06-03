@@ -148,12 +148,14 @@ if ($stage->total < 1) { // checked als er wel een kolum is
         <?php
             include_once('Effects/firework.html');
         ?>
+        <div id="disabledhoopik" class="disabledhoopik">
             <h1>You won the game</h1>
             <div class="resetGameButtons">
                 <form method="POST">
                     <button type="submit" name="reset" class="button" ><span>reset all</span></button>
                     <button type="submit" name="save" class="button" onclick="toMainscreen()"><span>Exit to mainmenu</span></button>
                 </form>
+                </div>
             </div>
         </div>
         <div class="block" id="settingsBlock">

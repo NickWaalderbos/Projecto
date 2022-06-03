@@ -11,6 +11,7 @@ var armorvolume = $("armor+");
 var speedvolume = $("speed+");
 var magicAttackSound = $("magicAttack");
 window.addEventListener('load', (event) => {
+    $("disabledhoopik").style.display = "none";
     volumecookie = getCookieValue("muziek");
     effectscookie = getCookieValue("effects");
     // Checks if cookies are set then executes volume
@@ -254,6 +255,7 @@ function chanceToDodge(selected) {
 
 function enemyKilled() {
     allToBackground();
+    $("disabledhoopik").style.display = "inline";
     stage = getCookieValue("stage");
     if (stage < 1) {
         stage = 1;
