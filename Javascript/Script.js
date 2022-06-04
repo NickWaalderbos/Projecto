@@ -65,7 +65,7 @@ function toMainscreen() {
 }
 
 function resetHealthPic() {
-    if (typeof document.getElementById("playerPicture").firstChild == "undefined") {
+    if (typeof document.getElementById("playerPicture").firstChild !== undefined) {
         document.getElementById("playerPicture").firstChild.remove();
         document.getElementById("enemyPicture").firstChild.remove();
         document.getElementById("playerHealth").value = arrCH[selectedCH][0];
@@ -211,7 +211,6 @@ function playerSpeed() {
     playerspeed *= 0.3;
     enemyTurn()
     playerspeed = arrCH[selectedCH][4];
-    console.log(document.getElementById("playerHealth").value);
 }
 
 function playerAttack(damage) {
@@ -344,10 +343,8 @@ function enemyAttack(damage) {
         if (total > 1) {
             return total;
         } else {
-            if (!enemykilled) {
                 playerKilled();
                 enemykilled = true;
-            }
             return 1;
         }
     }
@@ -362,6 +359,7 @@ function playerKilled() {
 }
 
 function retry() {
+    arenacheck = 0;
     gameOver.pause();
     music.play();
     resetHealthPic()
