@@ -48,6 +48,12 @@ function toSelectCharacter() {
     music.play();
     allToBackground();
     toForeground("characterBlock");
+    setStage();
+}
+
+function setStage() {
+    stage = getCookieValue("stage");
+    document.getElementById("bar").style.height = ((stage - 1) * 25) + "%";
 }
 
 function toMainscreen() {
@@ -59,7 +65,7 @@ function toMainscreen() {
 }
 
 function resetHealthPic() {
-    if (typeof document.getElementById("playerPicture").firstChild != "undefined") {
+    if (typeof document.getElementById("playerPicture").firstChild == "undefined") {
         document.getElementById("playerPicture").firstChild.remove();
         document.getElementById("enemyPicture").firstChild.remove();
         document.getElementById("playerHealth").value = arrCH[selectedCH][0];
@@ -285,21 +291,19 @@ function allButtons(disable) {
 }
 
 function enemyTurn() {
-    setTimeout(() => {
-        allButtons(true);
-        arrEnemy[selectedEnemy][1];
-        arrEnemy[selectedEnemy][4];
-        random = Math.floor(Math.random() * 3);
-        if (random = 0) {
-            normalAttackEnemy()
-        } else if (random = 1) {
-            magicAttackEnemy()
-        } else if (random = 2) {
-            ArmorEnemy()
-        } else if (random = 3) {
-            SpeedEnemy()
-        }
-    }, 2000);
+    allButtons(true);
+    arrEnemy[selectedEnemy][1];
+    arrEnemy[selectedEnemy][4];
+    random = Math.floor(Math.random() * 3);
+    if (random = 0) {
+        normalAttackEnemy()
+    } else if (random = 1) {
+        magicAttackEnemy()
+    } else if (random = 2) {
+        ArmorEnemy()
+    } else if (random = 3) {
+        SpeedEnemy()
+    }
     allButtons(false);
 }
 
