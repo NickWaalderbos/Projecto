@@ -291,21 +291,19 @@ function allButtons(disable) {
 }
 
 function enemyTurn() {
-    setTimeout(() => {
-        allButtons(true);
-        arrEnemy[selectedEnemy][1];
-        arrEnemy[selectedEnemy][4];
-        random = Math.floor(Math.random() * 3);
-        if (random = 0) {
-            normalAttackEnemy()
-        } else if (random = 1) {
-            magicAttackEnemy()
-        } else if (random = 2) {
-            ArmorEnemy()
-        } else if (random = 3) {
-            SpeedEnemy()
-        }
-    }, 2000);
+    allButtons(true);
+    arrEnemy[selectedEnemy][1];
+    arrEnemy[selectedEnemy][4];
+    random = Math.floor(Math.random() * 3);
+    if (random = 0) {
+        normalAttackEnemy()
+    } else if (random = 1) {
+        magicAttackEnemy()
+    } else if (random = 2) {
+        ArmorEnemy()
+    } else if (random = 3) {
+        SpeedEnemy()
+    }
     allButtons(false);
 }
 
