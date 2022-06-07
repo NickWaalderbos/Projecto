@@ -315,3 +315,16 @@ input {
     color: #a0a0a0be;
 
 }
+.logOutContainer {
+    font-family: "Lucida Console", "Courier New", monospace;
+    position: absolute;
+    right: 40%;
+    left: 40%;
+    clear: left;
+    width: 20%;
+    text-align: center;
+    border: solid white;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+}
