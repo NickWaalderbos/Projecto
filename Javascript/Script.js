@@ -343,8 +343,8 @@ function enemyAttack(damage) {
         if (total > 1) {
             return total;
         } else {
-                playerKilled();
-                enemykilled = true;
+            playerKilled();
+            enemykilled = true;
             return 1;
         }
     }
